@@ -76,4 +76,3 @@ OS version         : 26.5.2
 		at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:133)
 		... 19 more
 Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker]
-

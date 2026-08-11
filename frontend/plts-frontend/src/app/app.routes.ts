@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { PublicTraceabilityComponent } from './features/public/public-traceability.component';
 import { AuthLoginComponent } from './features/auth/auth-login/auth-login.component';
-import { AuthSignupComponent } from './features/auth/auth-signup.component';
+import { AuthSignupComponent } from './features/auth/auth-signup/auth-signup.component';
 import { OrgDashboardComponent } from './features/org/org-dashboard.component';
 import { OrgStakeholdersComponent } from './features/org/org-stakeholders.component';
 import { OrgOrdersComponent } from './features/org/org-orders.component';

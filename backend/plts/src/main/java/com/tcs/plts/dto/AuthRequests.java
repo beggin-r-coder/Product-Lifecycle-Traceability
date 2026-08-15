@@ -21,8 +21,6 @@ public class AuthRequests {
         private String phone;
         private String address;
         private String gstNumber;
-
-        @NotBlank(message = "Company registration number is required")
         private String companyRegistrationNumber;
     }
 

@@ -74,4 +74,8 @@ export class OrderService {
   exportExcel(orgId: number): Observable<Blob> {
     return this.http.get(`${this.apiUrl}/org/${orgId}/export-excel`, { responseType: 'blob' });
   }
+
+  cancelOrder(orderId: number, reason: string): Observable<ApiResponse<Order>> {
+    return this.http.post<ApiResponse<Order>>(`${this.apiUrl}/${orderId}/cancel`, { reason });
+  }
 }

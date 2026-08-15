@@ -26,6 +26,9 @@ public class Order {
     private String orderNumber; // e.g., ORD-20260806-1001
 
     @Column(nullable = false)
+    private String productQrCode;
+
+    @Column(nullable = false)
     private String productName;
 
     @Column(length = 2000)
@@ -33,6 +36,18 @@ public class Order {
 
     @Column(nullable = false)
     private Integer quantity;
+
+    private String productSerialNumber;
+
+    private String manufacturingBatchId;
+
+    private String qaBatchId;
+
+    private String packagingBatchId;
+
+    private String transportBatchId;
+
+    private String rawMaterialBatchId;
 
     private LocalDate expectedDeliveryDate;
 
@@ -46,6 +61,10 @@ public class Order {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OrderStatus status;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean isPremapped = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id", nullable = false)

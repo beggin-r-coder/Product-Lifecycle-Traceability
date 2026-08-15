@@ -19,4 +19,10 @@ public class PublicTraceabilityController {
         PublicTraceabilityDto response = publicTraceabilityService.getPublicTraceability(orderNumber);
         return ResponseEntity.ok(ApiResponse.success("Public traceability retrieved", response));
     }
+
+    @GetMapping("/qr-verify/{qrCode}")
+    public ResponseEntity<ApiResponse<Object>> verifyQrCode(@PathVariable String qrCode) {
+        Object response = publicTraceabilityService.verifyQrCode(qrCode);
+        return ResponseEntity.ok(ApiResponse.success("QR code verified", response));
+    }
 }

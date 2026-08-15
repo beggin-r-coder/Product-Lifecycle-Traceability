@@ -38,9 +38,15 @@ public class OrderService {
                 .orElseThrow(() -> new IllegalArgumentException("Organization not found"));
 
         String orderNumber = generateOrderNumber();
+        String productQrCode = "QR-" + orderNumber;
+
+        // Check if this is a premapped order
+        boolean isPremapped = request.getManufacturerId() != null || request.getQaId() != null ||
+                             request.getPackagingTransportId() != null || request.getRetailerId() != null;
 
         Order order = Order.builder()
                 .orderNumber(orderNumber)
+                .productQrCode(productQrCode)
                 .productName(request.getProductName())
                 .description(request.getDescription())
                 .quantity(request.getQuantity())
@@ -49,13 +55,53 @@ public class OrderService {
                 .remarks(request.getRemarks())
                 .status(OrderStatus.CREATED)
                 .organization(org)
+                .isPremapped(isPremapped)
                 .build();
+
+        // Handle premapped stakeholders
+        if (request.getManufacturerId() != null) {
+            Stakeholder manufacturer = stakeholderRepository.findById(request.getManufacturerId())
+                    .orElseThrow(() -> new IllegalArgumentException("Manufacturer not found"));
+            if (manufacturer.getRole() != Role.MANUFACTURER) {
+                throw new IllegalArgumentException("Selected stakeholder is not a Manufacturer");
+            }
+            order.setManufacturer(manufacturer);
+        }
+
+        if (request.getQaId() != null) {
+            Stakeholder qa = stakeholderRepository.findById(request.getQaId())
+                    .orElseThrow(() -> new IllegalArgumentException("QA not found"));
+            if (qa.getRole() != Role.QA) {
+                throw new IllegalArgumentException("Selected stakeholder is not QA");
+            }
+            order.setQa(qa);
+        }
+
+        if (request.getPackagingTransportId() != null) {
+            Stakeholder pt = stakeholderRepository.findById(request.getPackagingTransportId())
+                    .orElseThrow(() -> new IllegalArgumentException("Packaging & Transport not found"));
+            if (pt.getRole() != Role.PACKAGING_TRANSPORT) {
+                throw new IllegalArgumentException("Selected stakeholder is not Packaging & Transport");
+            }
+            order.setPackagingTransport(pt);
+        }
+
+        if (request.getRetailerId() != null) {
+            Stakeholder retailer = stakeholderRepository.findById(request.getRetailerId())
+                    .orElseThrow(() -> new IllegalArgumentException("Retailer not found"));
+            if (retailer.getRole() != Role.RETAILER) {
+                throw new IllegalArgumentException("Selected stakeholder is not a Retailer");
+            }
+            order.setRetailer(retailer);
+        }
 
         orderRepository.save(order);
 
         // Add Initial Stage
         addLifecycleStage(order, OrderStatus.CREATED, "Order Created", org.getName(), Role.ORGANIZATION,
-                "Order created in system with priority " + request.getPriority(), null, org.getUser().getEmail());
+                "Order created in system with priority " + request.getPriority() + 
+                (request.getManufacturerId() != null ? ". Premapped stakeholders assigned." : ""), 
+                null, org.getUser().getEmail());
 
         // Audit Log
         auditLogRepository.save(AuditLog.builder()
@@ -65,6 +111,17 @@ public class OrderService {
                 .resource(orderNumber)
                 .details("Created order for product: " + request.getProductName())
                 .build());
+
+        // Notify premapped manufacturer if set
+        if (order.getManufacturer() != null && order.getManufacturer().getUser() != null) {
+            notificationService.createNotification(order.getManufacturer().getUser(),
+                    "New Manufacturing Assignment",
+                    "You have been pre-assigned to manufacture Order #" + order.getOrderNumber() + " (" + order.getProductName() + ")",
+                    NotificationType.ORDER_ASSIGNED, order.getOrderNumber());
+
+            emailService.sendEmail(order.getManufacturer().getCompanyEmail(), "Manufacturing Task Assigned: Order #" + order.getOrderNumber(),
+                    emailService.buildOrderAssignmentTemplate(order.getManufacturer().getPersonInCharge(), order.getOrderNumber(), order.getProductName(), "Manufacturing"));
+        }
 
         return mapToResponse(order);
     }
@@ -124,14 +181,40 @@ public class OrderService {
                     "Manufacturing process completed. Notes: " + (request != null ? request.getNotes() : "N/A"),
                     request != null ? request.getDocumentUrl() : null, mfgName);
 
-            // Notify Organization
-            notificationService.createNotification(order.getOrganization().getUser(),
-                    "Manufacturing Completed",
-                    "Manufacturing for Order #" + order.getOrderNumber() + " is completed. Click 'Proceed Next' to assign QA.",
-                    NotificationType.STAGE_COMPLETED, order.getOrderNumber());
+            // Auto-assign QA if premapped
+            if (order.isPremapped() && order.getQa() != null) {
+                Stakeholder qa = order.getQa();
+                order.setStatus(OrderStatus.QA_ASSIGNED);
+                addLifecycleStage(order, OrderStatus.QA_ASSIGNED, "Auto-assigned to Quality Assurance (Premap)",
+                        qa.getCompanyName(), Role.QA, "Automatically assigned from premap configuration", null, "System");
 
-            emailService.sendEmail(order.getOrganization().getEmail(), "Order #" + order.getOrderNumber() + " - Manufacturing Completed",
-                    "<p>Manufacturing completed for Order #" + order.getOrderNumber() + ". Please proceed to assign Quality Assurance in dashboard.</p>");
+                // Notify QA with stakeholder chain info
+                String notificationMessage = buildStakeholderChainNotification(order, "Quality Assurance", mfgName, null);
+                if (qa.getUser() != null) {
+                    notificationService.createNotification(qa.getUser(),
+                            "New QA Inspection Assignment (Auto-assigned)",
+                            notificationMessage,
+                            NotificationType.ORDER_ASSIGNED, order.getOrderNumber());
+
+                    emailService.sendEmail(qa.getCompanyEmail(), "QA Inspection Assigned: Order #" + order.getOrderNumber(),
+                            emailService.buildOrderAssignmentTemplate(qa.getPersonInCharge(), order.getOrderNumber(), order.getProductName(), "Quality Assurance"));
+                }
+
+                // Notify Organization about auto-assignment
+                notificationService.createNotification(order.getOrganization().getUser(),
+                        "QA Auto-assigned (Premap)",
+                        "Order #" + order.getOrderNumber() + " - QA automatically assigned to " + qa.getCompanyName() + " via premap.",
+                        NotificationType.STAGE_COMPLETED, order.getOrderNumber());
+            } else {
+                // Notify Organization for manual assignment
+                notificationService.createNotification(order.getOrganization().getUser(),
+                        "Manufacturing Completed",
+                        "Manufacturing for Order #" + order.getOrderNumber() + " is completed. Click 'Proceed Next' to assign QA.",
+                        NotificationType.STAGE_COMPLETED, order.getOrderNumber());
+
+                emailService.sendEmail(order.getOrganization().getEmail(), "Order #" + order.getOrderNumber() + " - Manufacturing Completed",
+                        "<p>Manufacturing completed for Order #" + order.getOrderNumber() + ". Please proceed to assign Quality Assurance in dashboard.</p>");
+            }
         }
 
         orderRepository.save(order);
@@ -193,10 +276,39 @@ public class OrderService {
                 addLifecycleStage(order, OrderStatus.QA_COMPLETED, "QA Inspection Passed", qaName, Role.QA,
                         "Inspection Passed. Remarks: " + request.getQaRemarks(), request.getQaReportUrl(), qaName);
 
-                notificationService.createNotification(order.getOrganization().getUser(),
-                        "QA Passed",
-                        "Order #" + order.getOrderNumber() + " passed QA inspection. Click 'Proceed Next' to assign Packaging & Transport.",
-                        NotificationType.STAGE_COMPLETED, order.getOrderNumber());
+                // Auto-assign Packaging & Transport if premapped
+                if (order.isPremapped() && order.getPackagingTransport() != null) {
+                    Stakeholder pt = order.getPackagingTransport();
+                    order.setStatus(OrderStatus.PACKAGING_ASSIGNED);
+                    addLifecycleStage(order, OrderStatus.PACKAGING_ASSIGNED, "Auto-assigned to Packaging & Transport (Premap)",
+                            pt.getCompanyName(), Role.PACKAGING_TRANSPORT, "Automatically assigned from premap configuration", null, "System");
+
+                    // Notify Packaging & Transport with stakeholder chain info
+                    String ptName = pt.getCompanyName();
+                    String notificationMessage = buildStakeholderChainNotification(order, "Packaging & Transport", qaName,
+                            order.getRetailer() != null ? order.getRetailer().getCompanyName() : null);
+                    if (pt.getUser() != null) {
+                        notificationService.createNotification(pt.getUser(),
+                                "New Packaging Assignment (Auto-assigned)",
+                                notificationMessage,
+                                NotificationType.ORDER_ASSIGNED, order.getOrderNumber());
+
+                        emailService.sendEmail(pt.getCompanyEmail(), "Packaging & Transport Assigned: Order #" + order.getOrderNumber(),
+                                emailService.buildOrderAssignmentTemplate(pt.getPersonInCharge(), order.getOrderNumber(), order.getProductName(), "Packaging & Transport"));
+                    }
+
+                    // Notify Organization about auto-assignment
+                    notificationService.createNotification(order.getOrganization().getUser(),
+                            "Packaging & Transport Auto-assigned (Premap)",
+                            "Order #" + order.getOrderNumber() + " - Packaging & Transport automatically assigned to " + ptName + " via premap.",
+                            NotificationType.STAGE_COMPLETED, order.getOrderNumber());
+                } else {
+                    // Notify Organization for manual assignment
+                    notificationService.createNotification(order.getOrganization().getUser(),
+                            "QA Passed",
+                            "Order #" + order.getOrderNumber() + " passed QA inspection. Click 'Proceed Next' to assign Packaging & Transport.",
+                            NotificationType.STAGE_COMPLETED, order.getOrderNumber());
+                }
             } else {
                 order.setStatus(OrderStatus.REJECTED);
                 addLifecycleStage(order, OrderStatus.REJECTED, "QA Inspection Failed", qaName, Role.QA,
@@ -267,10 +379,38 @@ public class OrderService {
             addLifecycleStage(order, OrderStatus.TRANSPORT_COMPLETED, "Transport Completed", ptName, Role.PACKAGING_TRANSPORT,
                     "Shipment arrived at destination center", null, ptName);
 
-            notificationService.createNotification(order.getOrganization().getUser(),
-                    "Transport Completed",
-                    "Order #" + order.getOrderNumber() + " transport completed. Click 'Proceed Next' to assign Retailer.",
-                    NotificationType.STAGE_COMPLETED, order.getOrderNumber());
+            // Auto-assign Retailer if premapped
+            if (order.isPremapped() && order.getRetailer() != null) {
+                Stakeholder retailer = order.getRetailer();
+                order.setStatus(OrderStatus.RETAILER_ASSIGNED);
+                addLifecycleStage(order, OrderStatus.RETAILER_ASSIGNED, "Auto-assigned to Retailer (Premap)",
+                        retailer.getCompanyName(), Role.RETAILER, "Automatically assigned from premap configuration", null, "System");
+
+                // Notify Retailer with stakeholder chain info
+                String retailerName = retailer.getCompanyName();
+                String notificationMessage = buildStakeholderChainNotification(order, "Retailer Delivery", ptName, null);
+                if (retailer.getUser() != null) {
+                    notificationService.createNotification(retailer.getUser(),
+                            "New Shipment For Delivery (Auto-assigned)",
+                            notificationMessage,
+                            NotificationType.ORDER_ASSIGNED, order.getOrderNumber());
+
+                    emailService.sendEmail(retailer.getCompanyEmail(), "Shipment Delivery Assigned: Order #" + order.getOrderNumber(),
+                            emailService.buildOrderAssignmentTemplate(retailer.getPersonInCharge(), order.getOrderNumber(), order.getProductName(), "Retailer"));
+                }
+
+                // Notify Organization about auto-assignment
+                notificationService.createNotification(order.getOrganization().getUser(),
+                        "Retailer Auto-assigned (Premap)",
+                        "Order #" + order.getOrderNumber() + " - Retailer automatically assigned to " + retailerName + " via premap.",
+                        NotificationType.STAGE_COMPLETED, order.getOrderNumber());
+            } else {
+                // Notify Organization for manual assignment
+                notificationService.createNotification(order.getOrganization().getUser(),
+                        "Transport Completed",
+                        "Order #" + order.getOrderNumber() + " transport completed. Click 'Proceed Next' to assign Retailer.",
+                        NotificationType.STAGE_COMPLETED, order.getOrderNumber());
+            }
         }
 
         orderRepository.save(order);
@@ -402,6 +542,73 @@ public class OrderService {
         return "ORD-" + dateStr + "-" + rand;
     }
 
+    private String buildStakeholderChainNotification(Order order, String currentStage, String precedingStakeholder, String succeedingStakeholder) {
+        StringBuilder message = new StringBuilder();
+        message.append("You have been assigned to ").append(currentStage).append(" for Order #").append(order.getOrderNumber());
+        message.append(" (").append(order.getProductName()).append("). ");
+
+        if (precedingStakeholder != null) {
+            message.append("Preceding stakeholder: ").append(precedingStakeholder).append(". ");
+        }
+
+        if (succeedingStakeholder != null) {
+            message.append("Succeeding stakeholder: ").append(succeedingStakeholder).append(". ");
+        }
+
+        message.append("This is an automatic assignment via premap configuration.");
+        return message.toString();
+    }
+
+    @Transactional
+    public OrderDto.Response cancelOrder(Long orderId, OrderDto.CancelOrderRequest request) {
+        Order order = getOrder(orderId);
+        
+        // Check if order can be cancelled (not already completed or delivered)
+        if (order.getStatus() == OrderStatus.COMPLETED || order.getStatus() == OrderStatus.DELIVERED) {
+            throw new IllegalArgumentException("Cannot cancel completed or delivered orders");
+        }
+
+        order.setStatus(OrderStatus.REJECTED);
+        orderRepository.save(order);
+
+        addLifecycleStage(order, OrderStatus.REJECTED, "Order Cancelled", 
+                order.getOrganization().getName(), Role.ORGANIZATION,
+                "Order cancelled by organization. Reason: " + request.getReason(), 
+                null, order.getOrganization().getName());
+
+        // Notify all assigned stakeholders
+        List<Stakeholder> stakeholdersToNotify = new ArrayList<>();
+        if (order.getManufacturer() != null) stakeholdersToNotify.add(order.getManufacturer());
+        if (order.getQa() != null) stakeholdersToNotify.add(order.getQa());
+        if (order.getPackagingTransport() != null) stakeholdersToNotify.add(order.getPackagingTransport());
+        if (order.getRetailer() != null) stakeholdersToNotify.add(order.getRetailer());
+
+        for (Stakeholder stakeholder : stakeholdersToNotify) {
+            if (stakeholder.getUser() != null) {
+                notificationService.createNotification(stakeholder.getUser(),
+                        "Order Cancelled",
+                        "Order #" + order.getOrderNumber() + " has been cancelled by the organization. Reason: " + request.getReason(),
+                        NotificationType.ORDER_CANCELLED, order.getOrderNumber());
+
+                emailService.sendEmail(stakeholder.getCompanyEmail(), 
+                        "Order Cancelled: #" + order.getOrderNumber(),
+                        "<p>Order #" + order.getOrderNumber() + " has been cancelled by the organization.</p>" +
+                        "<p><strong>Reason:</strong> " + request.getReason() + "</p>");
+            }
+        }
+
+        // Audit Log
+        auditLogRepository.save(AuditLog.builder()
+                .action("ORDER_CANCELLED")
+                .performedBy(order.getOrganization().getName())
+                .role(Role.ORGANIZATION)
+                .resource(order.getOrderNumber())
+                .details("Order cancelled. Reason: " + request.getReason())
+                .build());
+
+        return mapToResponse(order);
+    }
+
     public OrderDto.Response mapToResponse(Order order) {
         List<LifecycleStageDto.Response> stages = order.getLifecycleStages().stream()
                 .map(s -> LifecycleStageDto.Response.builder()
@@ -420,6 +627,7 @@ public class OrderService {
         return OrderDto.Response.builder()
                 .id(order.getId())
                 .orderNumber(order.getOrderNumber())
+                .productQrCode(order.getProductQrCode())
                 .productName(order.getProductName())
                 .description(order.getDescription())
                 .quantity(order.getQuantity())
@@ -429,6 +637,7 @@ public class OrderService {
                 .status(order.getStatus())
                 .organizationName(order.getOrganization().getName())
                 .organizationId(order.getOrganization().getId())
+                .isPremapped(order.isPremapped())
                 .manufacturer(order.getManufacturer() != null ? stakeholderService.mapToResponse(order.getManufacturer()) : null)
                 .qa(order.getQa() != null ? stakeholderService.mapToResponse(order.getQa()) : null)
                 .packagingTransport(order.getPackagingTransport() != null ? stakeholderService.mapToResponse(order.getPackagingTransport()) : null)
@@ -441,6 +650,12 @@ public class OrderService {
                 .qaRemarks(order.getQaRemarks())
                 .qaReportUrl(order.getQaReportUrl())
                 .qaPassed(order.getQaPassed())
+                .productSerialNumber(order.getProductSerialNumber())
+                .manufacturingBatchId(order.getManufacturingBatchId())
+                .qaBatchId(order.getQaBatchId())
+                .packagingBatchId(order.getPackagingBatchId())
+                .transportBatchId(order.getTransportBatchId())
+                .rawMaterialBatchId(order.getRawMaterialBatchId())
                 .createdAt(order.getCreatedAt())
                 .updatedAt(order.getUpdatedAt())
                 .lifecycleStages(stages)

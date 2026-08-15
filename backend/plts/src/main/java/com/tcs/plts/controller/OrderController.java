@@ -130,6 +130,14 @@ public class OrderController {
         return ResponseEntity.ok(ApiResponse.success("Retailer status updated", response));
     }
 
+    @PostMapping("/{id}/cancel")
+    public ResponseEntity<ApiResponse<OrderDto.Response>> cancelOrder(
+            @PathVariable Long id,
+            @RequestBody OrderDto.CancelOrderRequest request) {
+        OrderDto.Response response = orderService.cancelOrder(id, request);
+        return ResponseEntity.ok(ApiResponse.success("Order cancelled successfully", response));
+    }
+
     @GetMapping("/{id}/qr-code")
     public ResponseEntity<ApiResponse<Map<String, String>>> getQrCode(@PathVariable Long id) {
         OrderDto.Response order = orderService.getOrderById(id);

@@ -145,4 +145,91 @@ public class EmailService {
             </div>
             """.formatted(orderNumber, recipientName, stageName, orderNumber, productName);
     }
+
+    public String buildDefectReportedTemplate(String recipientName, String defectCaseId, String defectCategory, String severity, String productName) {
+        return """
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+                <div style="background-color: #dc2626; padding: 24px; text-align: center; color: white;">
+                    <h2 style="margin: 0;">Defect Report Alert</h2>
+                    <p style="margin: 4px 0 0 0; opacity: 0.9;">Case #%s</p>
+                </div>
+                <div style="padding: 32px; background-color: #ffffff;">
+                    <p>Hello <strong>%s</strong>,</p>
+                    <p>A new defect has been reported for <strong>%s</strong>.</p>
+                    <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 16px; margin: 20px 0;">
+                        <p style="margin: 0 0 8px 0; font-size: 14px; color: #991b1b;"><strong>Category:</strong> %s</p>
+                        <p style="margin: 0; font-size: 14px; color: #991b1b;"><strong>Severity:</strong> %s</p>
+                    </div>
+                    <p>Please log in to your dashboard to review the defect details and initiate investigation.</p>
+                </div>
+                <div style="background-color: #f8fafc; padding: 16px; text-align: center; font-size: 12px; color: #94a3b8;">
+                    &copy; 2026 Enterprise Lifecycle Traceability System
+                </div>
+            </div>
+            """.formatted(defectCaseId, recipientName, productName, defectCategory, severity);
+    }
+
+    public String buildRecallInitiatedTemplate(String recipientName, String recallId, String recallScope, int affectedCount, String productName) {
+        return """
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+                <div style="background-color: #dc2626; padding: 24px; text-align: center; color: white;">
+                    <h2 style="margin: 0;">Product Recall Initiated</h2>
+                    <p style="margin: 4px 0 0 0; opacity: 0.9;">Recall #%s</p>
+                </div>
+                <div style="padding: 32px; background-color: #ffffff;">
+                    <p>Hello <strong>%s</strong>,</p>
+                    <p>A product recall has been initiated for <strong>%s</strong>.</p>
+                    <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 16px; margin: 20px 0;">
+                        <p style="margin: 0 0 8px 0; font-size: 14px; color: #991b1b;"><strong>Scope:</strong> %s</p>
+                        <p style="margin: 0; font-size: 14px; color: #991b1b;"><strong>Affected Products:</strong> %d</p>
+                    </div>
+                    <p>Please log in to your dashboard to view recall details and take required actions.</p>
+                </div>
+                <div style="background-color: #f8fafc; padding: 16px; text-align: center; font-size: 12px; color: #94a3b8;">
+                    &copy; 2026 Enterprise Lifecycle Traceability System
+                </div>
+            </div>
+            """.formatted(recallId, recipientName, productName, recallScope, affectedCount);
+    }
+
+    public String buildRecallApprovedTemplate(String recipientName, String recallId, String approvedBy) {
+        return """
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+                <div style="background-color: #dc2626; padding: 24px; text-align: center; color: white;">
+                    <h2 style="margin: 0;">Recall Approved</h2>
+                    <p style="margin: 4px 0 0 0; opacity: 0.9;">Recall #%s</p>
+                </div>
+                <div style="padding: 32px; background-color: #ffffff;">
+                    <p>Hello <strong>%s</strong>,</p>
+                    <p>The product recall <strong>%s</strong> has been approved by <strong>%s</strong>.</p>
+                    <p>Recall notifications are being sent to all affected stakeholders. Please log in to your dashboard to track recall progress.</p>
+                </div>
+                <div style="background-color: #f8fafc; padding: 16px; text-align: center; font-size: 12px; color: #94a3b8;">
+                    &copy; 2026 Enterprise Lifecycle Traceability System
+                </div>
+            </div>
+            """.formatted(recallId, recipientName, recallId, approvedBy);
+    }
+
+    public String buildRootCauseIdentifiedTemplate(String recipientName, String defectCaseId, String rootCause) {
+        return """
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+                <div style="background-color: #1e40af; padding: 24px; text-align: center; color: white;">
+                    <h2 style="margin: 0;">Root Cause Identified</h2>
+                    <p style="margin: 4px 0 0 0; opacity: 0.9;">Case #%s</p>
+                </div>
+                <div style="padding: 32px; background-color: #ffffff;">
+                    <p>Hello <strong>%s</strong>,</p>
+                    <p>The root cause for defect case <strong>%s</strong> has been identified.</p>
+                    <div style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 16px; margin: 20px 0;">
+                        <p style="margin: 0; font-size: 14px; color: #1e40af;"><strong>Root Cause:</strong> %s</p>
+                    </div>
+                    <p>Please log in to your dashboard to review the analysis and approve corrective actions.</p>
+                </div>
+                <div style="background-color: #f8fafc; padding: 16px; text-align: center; font-size: 12px; color: #94a3b8;">
+                    &copy; 2026 Enterprise Lifecycle Traceability System
+                </div>
+            </div>
+            """.formatted(defectCaseId, recipientName, defectCaseId, rootCause);
+    }
 }

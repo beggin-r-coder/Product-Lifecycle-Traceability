@@ -87,6 +87,7 @@ export interface Order {
   status: OrderStatus;
   organizationName: string;
   organizationId: number;
+  isPremapped?: boolean;
   manufacturer?: Stakeholder;
   qa?: Stakeholder;
   packagingTransport?: Stakeholder;

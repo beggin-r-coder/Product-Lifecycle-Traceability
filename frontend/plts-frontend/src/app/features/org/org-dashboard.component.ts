@@ -39,6 +39,10 @@ import { DashboardAnalytics } from '../../core/models/plts.models';
             <span class="material-symbols-outlined text-base">person_add</span>
             <span>Add Stakeholder</span>
           </a>
+          <a routerLink="/org/defects" class="px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-xl shadow-md shadow-red-500/20 flex items-center space-x-2">
+            <span class="material-symbols-outlined text-base">report</span>
+            <span>Defect Management</span>
+          </a>
         </div>
       </div>
 

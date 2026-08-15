@@ -69,6 +69,7 @@ import {
                 <th class="py-3.5 px-6 text-right">Lifecycle Actions</th>
               </tr>
             </thead>
+<<<<<<< HEAD
             <tbody
               class="divide-y divide-slate-100 dark:divide-slate-800 font-medium text-slate-700 dark:text-slate-300"
             >
@@ -184,6 +185,131 @@ import {
                   </td>
                 </tr>
               }
+=======
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800 font-medium text-slate-700 dark:text-slate-300">
+              <tr *ngIf="orders().length === 0">
+                <td colspan="7" class="py-8 text-center text-slate-400">
+                  No orders created yet. Click "Create New Order" to start.
+                </td>
+              </tr>
+              <tr *ngFor="let o of orders()" class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                <td class="py-4 px-6 font-mono font-extrabold text-slate-900 dark:text-white">
+                  {{ o.orderNumber }}
+                </td>
+                <td class="py-4 px-6 font-bold text-slate-900 dark:text-white">
+                  {{ o.productName }}
+                </td>
+                <td class="py-4 px-6">
+                  {{ o.quantity }} units
+                </td>
+                <td class="py-4 px-6">
+                  <span [class]="getPriorityBadgeClass(o.priority)">
+                    {{ o.priority }}
+                  </span>
+                </td>
+                <td class="py-4 px-6">
+                  <div class="flex items-center space-x-2">
+                    <span [class]="getStatusBadgeClass(o.status)">
+                      {{ getStatusLabel(o.status) }}
+                    </span>
+                    <span *ngIf="o.isPremapped" class="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300">
+                      AUTO-FLOW
+                    </span>
+                  </div>
+                </td>
+                <td class="py-4 px-6 text-[11px] space-y-0.5">
+                  <p *ngIf="o.manufacturer">Mfg: <strong class="text-slate-900 dark:text-white">{{ o.manufacturer.companyName }}</strong></p>
+                  <p *ngIf="o.qa">QA: <strong class="text-slate-900 dark:text-white">{{ o.qa.companyName }}</strong></p>
+                  <p *ngIf="o.packagingTransport">P&T: <strong class="text-slate-900 dark:text-white">{{ o.packagingTransport.companyName }}</strong></p>
+                  <p *ngIf="o.retailer">Retail: <strong class="text-slate-900 dark:text-white">{{ o.retailer.companyName }}</strong></p>
+                </td>
+                <td class="py-4 px-6 text-right space-x-2">
+
+                  <!-- Stage Transition Actions -->
+                  <button
+                    *ngIf="o.status === 'CREATED' && (!o.isPremapped || !o.manufacturer)"
+                    (click)="openAssignModal(o, 'MANUFACTURER')"
+                    class="px-2.5 py-1 bg-brand-600 hover:bg-brand-700 text-white font-bold text-[11px] rounded-lg shadow-sm"
+                  >
+                    Assign Manufacturer
+                  </button>
+
+                  <button
+                    *ngIf="o.status === 'MANUFACTURING_COMPLETED' && (!o.isPremapped || !o.qa)"
+                    (click)="openAssignModal(o, 'QA')"
+                    class="px-2.5 py-1 bg-purple-600 hover:bg-purple-700 text-white font-bold text-[11px] rounded-lg shadow-sm flex items-center space-x-1 inline-flex"
+                  >
+                    <span>Proceed Next &rarr; QA</span>
+                  </button>
+
+                  <button
+                    *ngIf="o.status === 'QA_COMPLETED' && (!o.isPremapped || !o.packagingTransport)"
+                    (click)="openAssignModal(o, 'PACKAGING_TRANSPORT')"
+                    class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold text-[11px] rounded-lg shadow-sm flex items-center space-x-1 inline-flex"
+                  >
+                    <span>Proceed Next &rarr; Packaging</span>
+                  </button>
+
+                  <button
+                    *ngIf="o.status === 'TRANSPORT_COMPLETED' && (!o.isPremapped || !o.retailer)"
+                    (click)="openAssignModal(o, 'RETAILER')"
+                    class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] rounded-lg shadow-sm flex items-center space-x-1 inline-flex"
+                  >
+                    <span>Proceed Next &rarr; Retailer</span>
+                  </button>
+
+                  <!-- Auto-assignment indicator for premap orders -->
+                  <span
+                    *ngIf="o.status === 'MANUFACTURING_COMPLETED' && o.isPremapped && o.qa"
+                    class="px-2 py-1 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold rounded-lg"
+                  >
+                    Auto-assigning QA...
+                  </span>
+
+                  <span
+                    *ngIf="o.status === 'QA_COMPLETED' && o.isPremapped && o.packagingTransport"
+                    class="px-2 py-1 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold rounded-lg"
+                  >
+                    Auto-assigning Packaging...
+                  </span>
+
+                  <span
+                    *ngIf="o.status === 'TRANSPORT_COMPLETED' && o.isPremapped && o.retailer"
+                    class="px-2 py-1 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold rounded-lg"
+                  >
+                    Auto-assigning Retailer...
+                  </span>
+
+                  <!-- Cancel Order Button -->
+                  <button 
+                    *ngIf="canCancelOrder(o)"
+                    (click)="openCancelModal(o)"
+                    title="Cancel Order"
+                    class="px-2.5 py-1 bg-red-600 hover:bg-red-700 text-white font-bold text-[11px] rounded-lg shadow-sm"
+                  >
+                    Cancel
+                  </button>
+
+                  <!-- Utilities: QR Code & PDF Export -->
+                  <button 
+                    (click)="openQrModal(o)"
+                    title="View QR Code"
+                    class="p-1 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
+                  >
+                    <span class="material-symbols-outlined text-lg">qr_code</span>
+                  </button>
+
+                  <button 
+                    (click)="exportPdf(o)"
+                    title="Export PDF Certificate"
+                    class="p-1 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
+                  >
+                    <span class="material-symbols-outlined text-lg">picture_as_pdf</span>
+                  </button>
+
+                </td>
+              </tr>
+>>>>>>> e7d6447 (Added the Defect Detection Procedure and Auto Assignment of Stakeholders)
             </tbody>
           </table>
         </div>
@@ -286,6 +412,84 @@ import {
             </div>
           </form>
         </div>
+<<<<<<< HEAD
+=======
+
+        <form (ngSubmit)="createOrder()" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Product Name *</label>
+            <input type="text" [(ngModel)]="orderForm.productName" name="productName" required placeholder="Solar Panel 400W Pro" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Quantity *</label>
+              <input type="number" [(ngModel)]="orderForm.quantity" name="quantity" required min="1" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Priority *</label>
+              <select [(ngModel)]="orderForm.priority" name="priority" required class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
+                <option value="LOW">LOW</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="HIGH">HIGH</option>
+                <option value="URGENT">URGENT</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Description</label>
+            <textarea [(ngModel)]="orderForm.description" name="description" rows="2" placeholder="High efficiency monocrystalline solar module batch..." class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none"></textarea>
+          </div>
+
+          <!-- Stakeholder Premapping Section -->
+          <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 space-y-3">
+            <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Premap Stakeholders (Optional)</h4>
+            <p class="text-[11px] text-slate-500">Pre-assign stakeholders to enable automatic hierarchical notifications throughout the order lifecycle.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Manufacturer</label>
+                <select [(ngModel)]="orderForm.manufacturerId" name="manufacturerId" class="w-full px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-lg border border-slate-200 dark:border-slate-700 text-[11px] focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
+                  <option [ngValue]="null">Select Manufacturer</option>
+                  <option *ngFor="let m of manufacturers()" [ngValue]="m.id">{{ m.companyName }} ({{ m.generatedUserId }})</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Quality Assurance</label>
+                <select [(ngModel)]="orderForm.qaId" name="qaId" class="w-full px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-lg border border-slate-200 dark:border-slate-700 text-[11px] focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
+                  <option [ngValue]="null">Select QA Company</option>
+                  <option *ngFor="let qa of qaCompanies()" [ngValue]="qa.id">{{ qa.companyName }} ({{ qa.generatedUserId }})</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Packaging & Transport</label>
+                <select [(ngModel)]="orderForm.packagingTransportId" name="packagingTransportId" class="w-full px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-lg border border-slate-200 dark:border-slate-700 text-[11px] focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
+                  <option [ngValue]="null">Select P&T Company</option>
+                  <option *ngFor="let pt of packagingCompanies()" [ngValue]="pt.id">{{ pt.companyName }} ({{ pt.generatedUserId }})</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Retailer</label>
+                <select [(ngModel)]="orderForm.retailerId" name="retailerId" class="w-full px-3 py-1.5 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-lg border border-slate-200 dark:border-slate-700 text-[11px] focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
+                  <option [ngValue]="null">Select Retailer</option>
+                  <option *ngFor="let r of retailers()" [ngValue]="r.id">{{ r.companyName }} ({{ r.generatedUserId }})</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex space-x-3 pt-2">
+            <button type="button" (click)="showCreateModal.set(false)" class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl">
+              Cancel
+            </button>
+            <button type="submit" [disabled]="loading()" class="flex-1 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl shadow-md shadow-brand-500/20 flex items-center justify-center space-x-2">
+              <span>Create Order</span>
+            </button>
+          </div>
+        </form>
+
+>>>>>>> e7d6447 (Added the Defect Detection Procedure and Auto Assignment of Stakeholders)
       </div>
     }
 
@@ -401,8 +605,52 @@ import {
           </button>
         </div>
       </div>
+<<<<<<< HEAD
     }
   `,
+=======
+    </div>
+
+    <!-- CANCEL ORDER MODAL -->
+    <div *ngIf="showCancelModal()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in">
+      <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6">
+        
+        <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+          <div>
+            <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">Cancel Order</h3>
+            <p class="text-xs text-slate-400">Order #{{ orderToCancel()?.orderNumber }}</p>
+          </div>
+          <button (click)="showCancelModal.set(false)" class="p-1 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <span class="material-symbols-outlined text-xl">close</span>
+          </button>
+        </div>
+
+        <div class="p-4 bg-red-50 dark:bg-red-950/40 rounded-xl border border-red-200 dark:border-red-800">
+          <p class="text-xs text-red-700 dark:text-red-300">
+            <strong>Warning:</strong> This will cancel the order and notify all assigned stakeholders. This action cannot be undone.
+          </p>
+        </div>
+
+        <form (ngSubmit)="cancelOrder()" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Cancellation Reason *</label>
+            <textarea [(ngModel)]="cancelReason" name="cancelReason" required rows="3" placeholder="Please provide a reason for cancelling this order..." class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-red-500/50 focus:outline-none"></textarea>
+          </div>
+
+          <div class="flex space-x-3 pt-2">
+            <button type="button" (click)="showCancelModal.set(false)" class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl">
+              Keep Order
+            </button>
+            <button type="submit" [disabled]="loading()" class="flex-1 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-md shadow-red-500/20 flex items-center justify-center space-x-2">
+              <span>Confirm Cancellation</span>
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  `
+>>>>>>> e7d6447 (Added the Defect Detection Procedure and Auto Assignment of Stakeholders)
 })
 export class OrgOrdersComponent implements OnInit {
   private orderService = inject(OrderService);
@@ -429,10 +677,47 @@ export class OrgOrdersComponent implements OnInit {
     description: '',
     quantity: 100,
     priority: 'HIGH' as OrderPriority,
+<<<<<<< HEAD
+=======
+    manufacturerId: null as number | null,
+    qaId: null as number | null,
+    packagingTransportId: null as number | null,
+    retailerId: null as number | null
+>>>>>>> e7d6447 (Added the Defect Detection Procedure and Auto Assignment of Stakeholders)
   };
+
+  // Stakeholder lists for premapping
+  manufacturers = signal<Stakeholder[]>([]);
+  qaCompanies = signal<Stakeholder[]>([]);
+  packagingCompanies = signal<Stakeholder[]>([]);
+  retailers = signal<Stakeholder[]>([]);
+
+  showCancelModal = signal(false);
+  cancelReason = '';
+  orderToCancel = signal<Order | null>(null);
 
   ngOnInit() {
     this.loadOrders();
+    this.loadStakeholdersForPremapping();
+  }
+
+  loadStakeholdersForPremapping() {
+    const orgId = this.auth.currentUser()?.organizationId;
+    if (orgId) {
+      // Load all stakeholder types for premapping
+      this.stakeholderService.getStakeholders(orgId, 'MANUFACTURER').subscribe(res => {
+        if (res.success && res.data) this.manufacturers.set(res.data);
+      });
+      this.stakeholderService.getStakeholders(orgId, 'QA').subscribe(res => {
+        if (res.success && res.data) this.qaCompanies.set(res.data);
+      });
+      this.stakeholderService.getStakeholders(orgId, 'PACKAGING_TRANSPORT').subscribe(res => {
+        if (res.success && res.data) this.packagingCompanies.set(res.data);
+      });
+      this.stakeholderService.getStakeholders(orgId, 'RETAILER').subscribe(res => {
+        if (res.success && res.data) this.retailers.set(res.data);
+      });
+    }
   }
 
   loadOrders() {
@@ -460,7 +745,16 @@ export class OrgOrdersComponent implements OnInit {
         this.loading.set(false);
         this.showCreateModal.set(false);
         this.loadOrders();
-        this.orderForm = { productName: '', description: '', quantity: 100, priority: 'HIGH' };
+        this.orderForm = { 
+          productName: '', 
+          description: '', 
+          quantity: 100, 
+          priority: 'HIGH' as OrderPriority,
+          manufacturerId: null,
+          qaId: null,
+          packagingTransportId: null,
+          retailerId: null
+        };
       },
       error: () => this.loading.set(false),
     });
@@ -582,5 +876,36 @@ export class OrgOrdersComponent implements OnInit {
 
   getStatusLabel(status: OrderStatus): string {
     return status.replace(/_/g, ' ');
+  }
+
+  openCancelModal(order: Order) {
+    if (order.status === 'COMPLETED' || order.status === 'DELIVERED') {
+      alert('Cannot cancel completed or delivered orders');
+      return;
+    }
+    this.orderToCancel.set(order);
+    this.cancelReason = '';
+    this.showCancelModal.set(true);
+  }
+
+  cancelOrder() {
+    const order = this.orderToCancel();
+    if (!order || !this.cancelReason.trim()) return;
+
+    this.loading.set(true);
+    this.orderService.cancelOrder(order.id, this.cancelReason).subscribe({
+      next: () => {
+        this.loading.set(false);
+        this.showCancelModal.set(false);
+        this.orderToCancel.set(null);
+        this.cancelReason = '';
+        this.loadOrders();
+      },
+      error: () => this.loading.set(false)
+    });
+  }
+
+  canCancelOrder(order: Order): boolean {
+    return order.status !== 'COMPLETED' && order.status !== 'DELIVERED';
   }
 }

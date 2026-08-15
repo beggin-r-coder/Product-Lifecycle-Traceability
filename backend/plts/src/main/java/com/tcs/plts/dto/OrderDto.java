@@ -35,6 +35,18 @@ public class OrderDto {
         private OrderPriority priority;
 
         private String remarks;
+
+        // Premapped stakeholders
+        private Long manufacturerId;
+        private Long qaId;
+        private Long packagingTransportId;
+        private Long retailerId;
+    }
+
+    @Data
+    public static class CancelOrderRequest {
+        @NotBlank(message = "Cancellation reason is required")
+        private String reason;
     }
 
     @Data
@@ -75,6 +87,7 @@ public class OrderDto {
     public static class Response {
         private Long id;
         private String orderNumber;
+        private String productQrCode;
         private String productName;
         private String description;
         private Integer quantity;
@@ -85,6 +98,7 @@ public class OrderDto {
 
         private String organizationName;
         private Long organizationId;
+        private Boolean isPremapped;
 
         private StakeholderDto.Response manufacturer;
         private StakeholderDto.Response qa;
@@ -100,6 +114,13 @@ public class OrderDto {
         private String qaRemarks;
         private String qaReportUrl;
         private Boolean qaPassed;
+
+        private String productSerialNumber;
+        private String manufacturingBatchId;
+        private String qaBatchId;
+        private String packagingBatchId;
+        private String transportBatchId;
+        private String rawMaterialBatchId;
 
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;

@@ -5,6 +5,10 @@ import { AuthSignupComponent } from './features/auth/auth-signup/auth-signup.com
 import { OrgDashboardComponent } from './features/org/org-dashboard.component';
 import { OrgStakeholdersComponent } from './features/org/org-stakeholders.component';
 import { OrgOrdersComponent } from './features/org/org-orders.component';
+import { OrgDefectsComponent } from './features/org/org-defects.component';
+import { OrgInvestigationComponent } from './features/org/org-investigation.component';
+import { OrgBacktrackingComponent } from './features/org/org-backtracking.component';
+import { OrgRecallsComponent } from './features/org/org-recalls.component';
 import { StakeholderDashboardComponent } from './features/stakeholder/stakeholder-dashboard.component';
 
 export const routes: Routes = [
@@ -17,6 +21,10 @@ export const routes: Routes = [
   { path: 'org/dashboard', component: OrgDashboardComponent },
   { path: 'org/stakeholders', component: OrgStakeholdersComponent },
   { path: 'org/orders', component: OrgOrdersComponent },
+  { path: 'org/defects', component: OrgDefectsComponent },
+  { path: 'org/investigation', component: OrgInvestigationComponent },
+  { path: 'org/investigation/:id/backtracking', component: OrgBacktrackingComponent },
+  { path: 'org/recalls', component: OrgRecallsComponent },
   { path: 'org/notifications', component: OrgOrdersComponent },
 
   // Stakeholder Portal Routes

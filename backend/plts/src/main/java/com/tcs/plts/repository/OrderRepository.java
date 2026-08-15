@@ -13,6 +13,7 @@ import java.util.Optional;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
     Optional<Order> findByOrderNumber(String orderNumber);
+    Optional<Order> findByProductQrCode(String productQrCode);
     List<Order> findByOrganizationId(Long organizationId);
     List<Order> findByOrganizationIdAndStatus(Long organizationId, OrderStatus status);
 

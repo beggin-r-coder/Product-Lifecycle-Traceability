@@ -1,0 +1,14 @@
+package com.tcs.plts.common.enums;
+
+public enum DefectCategory {
+    MANUFACTURING_DEFECT,
+    QUALITY_FAILURE,
+    PACKAGING_DAMAGE,
+    TRANSPORT_DAMAGE,
+    CONTAMINATION,
+    EXPIRED_PRODUCT,
+    LABELING_ERROR,
+    CUSTOMER_COMPLAINT,
+    REGULATORY_ISSUE,
+    UNKNOWN
+}

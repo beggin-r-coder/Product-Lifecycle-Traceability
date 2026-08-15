@@ -36,14 +36,18 @@ import { AuthService } from '../../core/services/auth.service';
       </div>
 
       <!-- Report Form Modal -->
-      <div *ngIf="showReportForm()" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6">
-          <div class="flex items-center justify-between">
-            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Report New Defect</h2>
-            <button (click)="showReportForm.set(false)" class="text-slate-400 hover:text-slate-600">
-              <span class="material-symbols-outlined">close</span>
-            </button>
-          </div>
+      @if (showReportForm()) {
+        <div class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in">
+          <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+              <div>
+                <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">Report New Defect</h3>
+                <p class="text-xs text-slate-400">Report product defects with full traceability</p>
+              </div>
+              <button (click)="showReportForm.set(false)" class="p-1 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <span class="material-symbols-outlined text-xl">close</span>
+              </button>
+            </div>
 
           <form [formGroup]="defectForm" (ngSubmit)="submitDefect()" class="space-y-4">
             <!-- Order Selection -->
@@ -56,7 +60,7 @@ import { AuthService } from '../../core/services/auth.service';
                   (input)="orderSearchTerm.set($any($event.target).value)"
                   (focus)="onSearchFocus()"
                   (blur)="onSearchBlur()"
-                  class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" 
+                  class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" 
                   placeholder="Search by order number, product name, or serial number">
                 <span class="absolute right-3 top-2 text-slate-400">
                   <span class="material-symbols-outlined">search</span>
@@ -64,54 +68,61 @@ import { AuthService } from '../../core/services/auth.service';
               </div>
               
               <!-- Order Dropdown -->
-              <div *ngIf="showOrderDropdown() && getFilteredOrders().length > 0" class="mt-2 max-h-48 overflow-y-auto bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg">
-                <div *ngFor="let order of getFilteredOrders()" 
-                     (click)="onOrderSelect(order)"
-                     class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer border-b border-slate-100 dark:border-slate-700 last:border-0">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <p class="text-sm font-semibold text-slate-900 dark:text-white">{{ order.orderNumber }}</p>
-                      <p class="text-xs text-slate-500">{{ order.productName }}</p>
+              @if (showOrderDropdown() && getFilteredOrders().length > 0) {
+                <div class="mt-2 max-h-48 overflow-y-auto bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg">
+                  @for (order of getFilteredOrders(); track order) {
+                    <div (click)="onOrderSelect(order)"
+                         class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer border-b border-slate-100 dark:border-slate-700 last:border-0">
+                      <div class="flex items-center justify-between">
+                        <div>
+                          <p class="text-xs font-semibold text-slate-900 dark:text-white">{{ order.orderNumber }}</p>
+                          <p class="text-[11px] text-slate-500">{{ order.productName }}</p>
+                        </div>
+                        <span [class]="'px-2 py-0.5 rounded-full text-[10px] font-bold ' + getOrderStatusClass(order.status)">
+                          {{ order.status }}
+                        </span>
+                      </div>
+                      <div class="mt-1 flex items-center space-x-3 text-[11px] text-slate-400">
+                        <span>Serial: {{ order.productSerialNumber || 'N/A' }}</span>
+                        <span>Batch: {{ order.manufacturingBatchId || order.qaBatchId || 'N/A' }}</span>
+                      </div>
                     </div>
-                    <span [class]="'px-2 py-1 rounded-full text-xs font-bold ' + getOrderStatusClass(order.status)">
-                      {{ order.status }}
-                    </span>
-                  </div>
-                  <div class="mt-1 flex items-center space-x-3 text-xs text-slate-400">
-                    <span>Serial: {{ order.productSerialNumber || 'N/A' }}</span>
-                    <span>Batch: {{ order.manufacturingBatchId || order.qaBatchId || 'N/A' }}</span>
-                  </div>
+                  }
                 </div>
-              </div>
+              }
               
               <!-- No Results Message -->
-              <div *ngIf="showOrderDropdown() && getFilteredOrders().length === 0" class="mt-2 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg text-sm text-slate-500">
-                No orders found matching your search
-              </div>
+              @if (showOrderDropdown() && getFilteredOrders().length === 0) {
+                <div class="mt-2 p-3 bg-slate-50 dark:bg-slate-800 rounded-xl text-xs text-slate-500">
+                  No orders found matching your search
+                </div>
+              }
               
               <!-- Selected Order Info -->
-              <div *ngIf="selectedOrder()" class="mt-2 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-800">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <p class="text-sm font-semibold text-blue-700 dark:text-blue-300">Selected: {{ selectedOrder().orderNumber }}</p>
-                    <p class="text-xs text-blue-600 dark:text-blue-400">{{ selectedOrder().productName }}</p>
+              @if (selectedOrder()) {
+                <div class="mt-2 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-xl border border-blue-200 dark:border-blue-800">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-xs font-semibold text-blue-700 dark:text-blue-300">Selected: {{ selectedOrder().orderNumber }}</p>
+                      <p class="text-[11px] text-blue-600 dark:text-blue-400">{{ selectedOrder().productName }}</p>
+                    </div>
+                    <button (click)="selectedOrder.set(null); defectForm.patchValue({productQrCode: '', productSerialNumber: '', batchNumber: ''}); orderSearchTerm.set('')" class="text-blue-600 hover:text-blue-800">
+                      <span class="material-symbols-outlined text-lg">close</span>
+                    </button>
                   </div>
-                  <button (click)="selectedOrder.set(null); defectForm.patchValue({productQrCode: '', productSerialNumber: '', batchNumber: ''}); orderSearchTerm.set('')" class="text-blue-600 hover:text-blue-800">
-                    <span class="material-symbols-outlined">close</span>
-                  </button>
                 </div>
-              </div>
+              }
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Product QR Code</label>
-                <input type="text" formControlName="productQrCode" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Auto-filled from order or scan QR">
+                <input type="text" formControlName="productQrCode" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Auto-filled from order or scan QR">
                 <p class="text-[10px] text-slate-400 mt-1">Generated when order is created (QR-orderNumber)</p>
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Product Serial Number</label>
-                <input type="text" formControlName="productSerialNumber" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Auto-filled or enter manually">
+                <input type="text" formControlName="productSerialNumber" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Auto-filled or enter manually">
                 <p class="text-[10px] text-slate-400 mt-1">Generated by Manufacturer during production</p>
               </div>
             </div>
@@ -119,19 +130,19 @@ import { AuthService } from '../../core/services/auth.service';
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Batch Number</label>
-                <input type="text" formControlName="batchNumber" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Auto-filled or enter manually">
+                <input type="text" formControlName="batchNumber" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Auto-filled or enter manually">
                 <p class="text-[10px] text-slate-400 mt-1">Generated by Manufacturer (MFG), QA (QA), or Packaging (PKG)</p>
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Quantity Affected</label>
-                <input type="number" formControlName="quantityAffected" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Enter quantity">
+                <input type="number" formControlName="quantityAffected" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Enter quantity">
               </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Defect Category</label>
-                <select formControlName="defectCategory" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm">
+                <select formControlName="defectCategory" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
                   <option value="">Select category</option>
                   <option value="MANUFACTURING_DEFECT">Manufacturing Defect</option>
                   <option value="QUALITY_FAILURE">Quality Failure</option>
@@ -145,7 +156,7 @@ import { AuthService } from '../../core/services/auth.service';
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Severity</label>
-                <select formControlName="severity" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm">
+                <select formControlName="severity" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
                   <option value="">Select severity</option>
                   <option value="LOW">Low</option>
                   <option value="MEDIUM">Medium</option>
@@ -157,44 +168,54 @@ import { AuthService } from '../../core/services/auth.service';
 
             <div>
               <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Description</label>
-              <textarea formControlName="description" rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Describe the defect in detail"></textarea>
+              <textarea formControlName="description" rows="3" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Describe the defect in detail"></textarea>
             </div>
 
             <div>
               <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Location</label>
-              <input type="text" formControlName="location" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Where was the defect discovered?">
+              <input type="text" formControlName="location" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Where was the defect discovered?">
             </div>
 
-            <div class="flex justify-end space-x-3">
-              <button type="button" (click)="showReportForm.set(false)" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-semibold hover:bg-slate-300">Cancel</button>
-              <button type="submit" [disabled]="submitting()" class="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-semibold hover:bg-red-700 disabled:opacity-50">
-                {{ submitting() ? 'Submitting...' : 'Submit Report' }}
+            <div class="flex space-x-3 pt-2">
+              <button type="button" (click)="showReportForm.set(false)" class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl">Cancel</button>
+              <button type="submit" [disabled]="submitting()" class="flex-1 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-md shadow-red-500/20 disabled:opacity-50">
+                @if (submitting()) {
+                  <span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                }
+                <span>{{ submitting() ? 'Submitting...' : 'Submit Report' }}</span>
               </button>
             </div>
           </form>
         </div>
       </div>
+    }
 
       <!-- Recall Initiation Modal -->
-      <div *ngIf="showRecallForm()" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6">
-          <div class="flex items-center justify-between">
-            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Initiate Product Recall</h2>
-            <button (click)="showRecallForm.set(false)" class="text-slate-400 hover:text-slate-600">
-              <span class="material-symbols-outlined">close</span>
-            </button>
-          </div>
+      @if (showRecallForm()) {
+        <div class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in">
+          <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+              <div>
+                <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">Initiate Product Recall</h3>
+                <p class="text-xs text-slate-400">Initiate recall for defective products</p>
+              </div>
+              <button (click)="showRecallForm.set(false)" class="p-1 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <span class="material-symbols-outlined text-xl">close</span>
+              </button>
+            </div>
 
-          <div *ngIf="selectedDefect()" class="p-4 bg-red-50 dark:bg-red-950/30 rounded-xl border border-red-200 dark:border-red-800">
-            <p class="text-sm font-semibold text-red-700 dark:text-red-300">Defect: {{ selectedDefect().defectCategory }}</p>
-            <p class="text-xs text-red-600 dark:text-red-400">Severity: {{ selectedDefect().severity }} | Product: {{ selectedDefect().productSerialNumber }}</p>
-          </div>
+          @if (selectedDefect()) {
+            <div class="p-4 bg-red-50 dark:bg-red-950/30 rounded-xl border border-red-200 dark:border-red-800">
+              <p class="text-sm font-semibold text-red-700 dark:text-red-300">Defect: {{ selectedDefect().defectCategory }}</p>
+              <p class="text-xs text-red-600 dark:text-red-400">Severity: {{ selectedDefect().severity }} | Product: {{ selectedDefect().productSerialNumber }}</p>
+            </div>
+          }
 
           <form [formGroup]="recallForm" (ngSubmit)="submitRecall()" class="space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Recall Scope</label>
-                <select formControlName="recallScope" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm">
+                <select formControlName="recallScope" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
                   <option value="BATCH">Batch Level</option>
                   <option value="PRODUCT">Product Level</option>
                   <option value="GLOBAL">Global Recall</option>
@@ -202,7 +223,7 @@ import { AuthService } from '../../core/services/auth.service';
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Priority</label>
-                <select formControlName="priority" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm">
+                <select formControlName="priority" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
                   <option value="LOW">Low</option>
                   <option value="MEDIUM">Medium</option>
                   <option value="HIGH">High</option>
@@ -213,39 +234,43 @@ import { AuthService } from '../../core/services/auth.service';
 
             <div>
               <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Affected Product Count</label>
-              <input type="number" formControlName="affectedProductCount" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Number of affected products">
+              <input type="number" formControlName="affectedProductCount" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Number of affected products">
             </div>
 
             <div>
               <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Affected Batches (comma-separated)</label>
-              <input type="text" formControlName="affectedBatches" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="e.g., BATCH001, BATCH002">
+              <input type="text" formControlName="affectedBatches" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="e.g., BATCH001, BATCH002">
             </div>
 
             <div>
               <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Recall Reason</label>
-              <textarea formControlName="recallReason" rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Explain why this recall is necessary"></textarea>
+              <textarea formControlName="recallReason" rows="3" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Explain why this recall is necessary"></textarea>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Estimated Cost</label>
-                <input type="number" formControlName="estimatedCost" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Estimated cost in USD">
+                <input type="number" formControlName="estimatedCost" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Estimated cost in USD">
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Estimated Completion Date</label>
-                <input type="date" formControlName="estimatedCompletionDate" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm">
+                <input type="date" formControlName="estimatedCompletionDate" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
               </div>
             </div>
 
-            <div class="flex justify-end space-x-3">
-              <button type="button" (click)="showRecallForm.set(false)" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-semibold hover:bg-slate-300">Cancel</button>
-              <button type="submit" [disabled]="submitting()" class="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-semibold hover:bg-red-700 disabled:opacity-50">
-                {{ submitting() ? 'Initiating...' : 'Initiate Recall' }}
+            <div class="flex space-x-3 pt-2">
+              <button type="button" (click)="showRecallForm.set(false)" class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl">Cancel</button>
+              <button type="submit" [disabled]="submitting()" class="flex-1 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-md shadow-red-500/20 disabled:opacity-50">
+                @if (submitting()) {
+                  <span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                }
+                <span>{{ submitting() ? 'Initiating...' : 'Initiate Recall' }}</span>
               </button>
             </div>
           </form>
         </div>
       </div>
+    }
 
       <!-- Defect Cases List -->
       <div class="glass-card rounded-2xl overflow-hidden">
@@ -254,54 +279,62 @@ import { AuthService } from '../../core/services/auth.service';
           <p class="text-xs text-slate-500">Track all reported defects and their investigation status</p>
         </div>
 
-        <div *ngIf="loading()" class="p-8 text-center text-slate-500">
-          <span class="material-symbols-outlined animate-spin text-3xl">refresh</span>
-          <p class="mt-2">Loading defect cases...</p>
-        </div>
-
-        <div *ngIf="!loading() && defectCases().length === 0" class="p-8 text-center text-slate-500">
-          <span class="material-symbols-outlined text-4xl">inbox</span>
-          <p class="mt-2">No defect cases reported yet</p>
-        </div>
-
-        <div *ngIf="!loading() && defectCases().length > 0" class="divide-y divide-slate-200 dark:divide-slate-700">
-          <div *ngFor="let defect of defectCases()" class="p-6 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer" (click)="selectDefect(defect)">
-            <div class="flex items-start justify-between">
-              <div class="flex-1">
-                <div class="flex items-center space-x-3 mb-2">
-                  <span [class]="'px-2 py-1 rounded-full text-xs font-bold ' + getSeverityClass(defect.severity)">
-                    {{ defect.severity }}
-                  </span>
-                  <span class="text-xs text-slate-500">{{ defect.defectCaseId }}</span>
-                  <span [class]="'px-2 py-1 rounded-full text-xs font-bold ' + getStatusClass(defect.status)">
-                    {{ defect.status }}
-                  </span>
-                </div>
-                <h3 class="font-semibold text-slate-900 dark:text-white">{{ defect.defectCategory }}</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">{{ defect.description }}</p>
-                <div class="flex items-center space-x-4 mt-3 text-xs text-slate-500">
-                  <span>Product: {{ defect.productSerialNumber }}</span>
-                  <span>Batch: {{ defect.batchNumber }}</span>
-                  <span>Reported by: {{ defect.reportedByName }}</span>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2">
-                <button (click)="viewBacktracking(defect)" class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="View Backtracking">
-                  <span class="material-symbols-outlined">timeline</span>
-                </button>
-                <button (click)="viewAffectedProducts(defect)" class="p-2 text-amber-600 hover:bg-amber-50 rounded-lg" title="View Affected Products">
-                  <span class="material-symbols-outlined">warning</span>
-                </button>
-                <button (click)="analyzeRootCause(defect)" class="p-2 text-purple-600 hover:bg-purple-50 rounded-lg" title="Analyze Root Cause">
-                  <span class="material-symbols-outlined">psychology</span>
-                </button>
-                <button (click)="initiateRecall(defect)" class="p-2 text-red-600 hover:bg-red-50 rounded-lg" title="Initiate Recall">
-                  <span class="material-symbols-outlined">recall</span>
-                </button>
-              </div>
-            </div>
+        @if (loading()) {
+          <div class="p-8 text-center text-slate-500">
+            <span class="material-symbols-outlined animate-spin text-3xl">refresh</span>
+            <p class="mt-2">Loading defect cases...</p>
           </div>
-        </div>
+        }
+
+        @if (!loading() && defectCases().length === 0) {
+          <div class="p-8 text-center text-slate-500">
+            <span class="material-symbols-outlined text-4xl">inbox</span>
+            <p class="mt-2">No defect cases reported yet</p>
+          </div>
+        }
+
+        @if (!loading() && defectCases().length > 0) {
+          <div class="divide-y divide-slate-200 dark:divide-slate-700">
+            @for (defect of defectCases(); track defect) {
+              <div class="p-6 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer" (click)="selectDefect(defect)">
+                <div class="flex items-start justify-between">
+                  <div class="flex-1">
+                    <div class="flex items-center space-x-3 mb-2">
+                      <span [class]="'px-2 py-1 rounded-full text-xs font-bold ' + getSeverityClass(defect.severity)">
+                        {{ defect.severity }}
+                      </span>
+                      <span class="text-xs text-slate-500">{{ defect.defectCaseId }}</span>
+                      <span [class]="'px-2 py-1 rounded-full text-xs font-bold ' + getStatusClass(defect.status)">
+                        {{ defect.status }}
+                      </span>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 dark:text-white">{{ defect.defectCategory }}</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">{{ defect.description }}</p>
+                    <div class="flex items-center space-x-4 mt-3 text-xs text-slate-500">
+                      <span>Product: {{ defect.productSerialNumber }}</span>
+                      <span>Batch: {{ defect.batchNumber }}</span>
+                      <span>Reported by: {{ defect.reportedByName }}</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <button (click)="viewBacktracking(defect)" class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="View Backtracking">
+                      <span class="material-symbols-outlined">timeline</span>
+                    </button>
+                    <button (click)="viewAffectedProducts(defect)" class="p-2 text-amber-600 hover:bg-amber-50 rounded-lg" title="View Affected Products">
+                      <span class="material-symbols-outlined">warning</span>
+                    </button>
+                    <button (click)="analyzeRootCause(defect)" class="p-2 text-purple-600 hover:bg-purple-50 rounded-lg" title="Analyze Root Cause">
+                      <span class="material-symbols-outlined">psychology</span>
+                    </button>
+                    <button (click)="initiateRecall(defect)" class="p-2 text-red-600 hover:bg-red-50 rounded-lg" title="Initiate Recall">
+                      <span class="material-symbols-outlined">recall</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        }
       </div>
 
     </div>

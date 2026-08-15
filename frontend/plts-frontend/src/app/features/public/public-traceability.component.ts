@@ -32,36 +32,6 @@ import { PublicTraceability } from '../../core/models/plts.models';
           </p>
         </div>
 
-        <!-- Search Bar -->
-        <div
-          class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center gap-3"
-        >
-          <div class="relative flex-1 w-full">
-            <span class="material-symbols-outlined absolute left-3.5 top-3 text-slate-400 text-xl"
-              >search</span
-            >
-            <input
-              type="text"
-              placeholder="Enter Order ID (e.g. ORD-20260806-1001)..."
-              [(ngModel)]="searchOrderId"
-              (keyup.enter)="searchTraceability()"
-              class="w-full pl-11 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-medium focus:ring-2 focus:ring-brand-500/50 focus:outline-none"
-            />
-          </div>
-          <button
-            (click)="searchTraceability()"
-            [disabled]="loading()"
-            class="w-full sm:w-auto px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm rounded-xl shadow-md shadow-brand-500/20 transition-all flex items-center justify-center space-x-2"
-          >
-            @if (loading()) {
-              <span
-                class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
-              ></span>
-            }
-            <span>{{ loading() ? 'Searching...' : 'Track Product' }}</span>
-          </button>
-        </div>
-
         <!-- Error Alert -->
         @if (errorMessage()) {
           <div
@@ -196,7 +166,6 @@ export class PublicTraceabilityComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private service = inject(TraceabilityService);
 
-  searchOrderId = '';
   loading = signal(false);
   data = signal<PublicTraceability | null>(null);
   errorMessage = signal<string | null>(null);
@@ -204,18 +173,16 @@ export class PublicTraceabilityComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       if (params['orderId']) {
-        this.searchOrderId = params['orderId'];
-        this.searchTraceability();
+        this.loadTraceability(params['orderId']);
       }
     });
   }
 
-  searchTraceability() {
-    if (!this.searchOrderId.trim()) return;
+  loadTraceability(orderId: string) {
     this.loading.set(true);
     this.errorMessage.set(null);
 
-    this.service.getPublicTraceability(this.searchOrderId.trim()).subscribe({
+    this.service.getPublicTraceability(orderId.trim()).subscribe({
       next: (res) => {
         this.loading.set(false);
         if (res.success && res.data) {
@@ -227,7 +194,7 @@ export class PublicTraceabilityComponent implements OnInit {
       },
       error: (err) => {
         this.loading.set(false);
-        this.errorMessage.set('Order not found with number: ' + this.searchOrderId);
+        this.errorMessage.set('Order not found with number: ' + orderId);
         this.data.set(null);
       },
     });

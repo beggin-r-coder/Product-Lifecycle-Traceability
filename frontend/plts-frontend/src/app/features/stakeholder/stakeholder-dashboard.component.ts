@@ -15,7 +15,7 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1
-            class="text-2xl md:text-3xl font-heading font-extrabold text-slate-900 dark:text-white"
+            class="text-2xl md:text-3xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight"
           >
             {{ portalTitle }} Tasks
           </h1>
@@ -30,7 +30,7 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
 
         <button
           (click)="loadTasks()"
-          class="px-3.5 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-xs font-bold rounded-xl hover:bg-slate-200 flex items-center space-x-1.5 self-start sm:self-auto"
+          class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-xs font-bold rounded-xl hover:bg-slate-200 flex items-center space-x-2 self-start sm:self-auto"
         >
           <span class="material-symbols-outlined text-base">refresh</span>
           <span>Refresh Tasks</span>
@@ -40,18 +40,14 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
       <!-- Task Cards List -->
       <div class="space-y-4">
         @if (tasks().length === 0) {
-          <div
-            class="p-12 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 text-slate-400"
-          >
+          <div class="glass-card p-12 text-center text-slate-400">
             <span class="material-symbols-outlined text-4xl mb-2">task</span>
             <p class="text-sm font-semibold">No active tasks assigned to your company right now.</p>
           </div>
         }
 
         @for (t of tasks(); track t) {
-          <div
-            class="bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-md border border-slate-200 dark:border-slate-800 space-y-4"
-          >
+          <div class="glass-card rounded-3xl p-6 space-y-4">
             <div
               class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-4"
             >
@@ -196,52 +192,50 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
 
     <!-- MANUFACTURER COMPLETE MODAL -->
     @if (showMfgModal()) {
-      <div
-        class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in"
-      >
-        <div
-          class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6"
-        >
-          <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">
-            Complete Manufacturing
-          </h3>
+      <div class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+            <div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">Complete Manufacturing</h3>
+              <p class="text-xs text-slate-400">Submit manufacturing completion details</p>
+            </div>
+            <button (click)="showMfgModal.set(false)" class="p-1 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+          </div>
           <form (ngSubmit)="submitMfgCompletion()" class="space-y-4">
             <div>
-              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1"
-                >Completion Notes</label
-              >
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Completion Notes</label>
               <textarea
                 [(ngModel)]="mfgNotes"
                 name="mfgNotes"
                 rows="3"
                 required
                 placeholder="All batch units produced according to ISO standards..."
-                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border text-xs focus:outline-none"
+                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none"
               ></textarea>
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1"
-                >Document / Certificate URL (Optional)</label
-              >
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Document / Certificate URL (Optional)</label>
               <input
                 type="text"
                 [(ngModel)]="mfgDocUrl"
                 name="mfgDocUrl"
                 placeholder="https://docs.company.com/cert-123.pdf"
-                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border text-xs focus:outline-none"
+                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none"
               />
             </div>
             <div class="flex space-x-3 pt-2">
               <button
                 type="button"
                 (click)="showMfgModal.set(false)"
-                class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-xs font-bold rounded-xl"
+                class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                class="flex-1 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl shadow-md"
+                class="flex-1 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl shadow-md shadow-brand-500/20"
               >
                 Submit Completion
               </button>
@@ -253,66 +247,62 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
 
     <!-- QA REPORT MODAL -->
     @if (showQaModal()) {
-      <div
-        class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in"
-      >
-        <div
-          class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6"
-        >
-          <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">
-            Submit QA Inspection Report
-          </h3>
+      <div class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+            <div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">Submit QA Inspection Report</h3>
+              <p class="text-xs text-slate-400">Submit quality inspection results</p>
+            </div>
+            <button (click)="showQaModal.set(false)" class="p-1 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+          </div>
           <form (ngSubmit)="submitQaReport()" class="space-y-4">
             <div>
-              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1"
-                >Inspection Outcome *</label
-              >
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Inspection Outcome *</label>
               <select
                 [(ngModel)]="qaPassed"
                 name="qaPassed"
                 required
-                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border text-xs font-bold focus:outline-none"
+                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold focus:ring-2 focus:ring-brand-500/50 focus:outline-none"
               >
                 <option [ngValue]="true">PASS - Quality Inspection Certified</option>
                 <option [ngValue]="false">FAIL - Quality Requirements Not Met</option>
               </select>
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1"
-                >Inspection Remarks *</label
-              >
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Inspection Remarks *</label>
               <textarea
                 [(ngModel)]="qaRemarks"
                 name="qaRemarks"
                 rows="3"
                 required
                 placeholder="Detailed QA evaluation notes..."
-                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border text-xs focus:outline-none"
+                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none"
               ></textarea>
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1"
-                >Inspection Report URL (Optional)</label
-              >
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Inspection Report URL (Optional)</label>
               <input
                 type="text"
                 [(ngModel)]="qaReportUrl"
                 name="qaReportUrl"
                 placeholder="https://qa.org/reports/rep-99.pdf"
-                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border text-xs focus:outline-none"
+                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none"
               />
             </div>
             <div class="flex space-x-3 pt-2">
               <button
                 type="button"
                 (click)="showQaModal.set(false)"
-                class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-xs font-bold rounded-xl"
+                class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                class="flex-1 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow-md"
+                class="flex-1 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow-md shadow-purple-500/20"
               >
                 Submit QA Report
               </button>
@@ -324,53 +314,51 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
 
     <!-- PACKAGING & DISPATCH MODAL -->
     @if (showShippingModal()) {
-      <div
-        class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in"
-      >
-        <div
-          class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6"
-        >
-          <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">
-            Shipping & Dispatch Details
-          </h3>
+      <div class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+            <div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">Shipping & Dispatch Details</h3>
+              <p class="text-xs text-slate-400">Enter shipping and vehicle information</p>
+            </div>
+            <button (click)="showShippingModal.set(false)" class="p-1 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+          </div>
           <form (ngSubmit)="submitShippingDetails()" class="space-y-4">
             <div>
-              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1"
-                >Tracking Number *</label
-              >
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Tracking Number *</label>
               <input
                 type="text"
                 [(ngModel)]="shippingForm.trackingNumber"
                 name="trackingNumber"
                 required
                 placeholder="TRK-88776655"
-                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border text-xs font-mono uppercase focus:outline-none"
+                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-mono uppercase focus:ring-2 focus:ring-brand-500/50 focus:outline-none"
               />
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1"
-                >Vehicle & Driver Details *</label
-              >
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Vehicle & Driver Details *</label>
               <input
                 type="text"
                 [(ngModel)]="shippingForm.vehicleDetails"
                 name="vehicleDetails"
                 required
                 placeholder="Volvo Truck (Reg: KA-01-AB-1234), Driver: Alex"
-                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border text-xs focus:outline-none"
+                class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none"
               />
             </div>
             <div class="flex space-x-3 pt-2">
               <button
                 type="button"
                 (click)="showShippingModal.set(false)"
-                class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-xs font-bold rounded-xl"
+                class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                class="flex-1 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl shadow-md"
+                class="flex-1 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl shadow-md shadow-amber-500/20"
               >
                 Dispatch Shipment
               </button>

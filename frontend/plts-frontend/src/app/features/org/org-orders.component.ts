@@ -69,7 +69,6 @@ import {
                 <th class="py-3.5 px-6 text-right">Lifecycle Actions</th>
               </tr>
             </thead>
-<<<<<<< HEAD
             <tbody
               class="divide-y divide-slate-100 dark:divide-slate-800 font-medium text-slate-700 dark:text-slate-300"
             >
@@ -95,9 +94,16 @@ import {
                     </span>
                   </td>
                   <td class="py-4 px-6">
-                    <span [class]="getStatusBadgeClass(o.status)">
-                      {{ getStatusLabel(o.status) }}
-                    </span>
+                    <div class="flex items-center space-x-2">
+                      <span [class]="getStatusBadgeClass(o.status)">
+                        {{ getStatusLabel(o.status) }}
+                      </span>
+                      @if (o.isPremapped) {
+                        <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300">
+                          AUTO-FLOW
+                        </span>
+                      }
+                    </div>
                   </td>
                   <td class="py-4 px-6 text-[11px] space-y-0.5">
                     @if (o.manufacturer) {
@@ -135,7 +141,7 @@ import {
                   </td>
                   <td class="py-4 px-6 text-right space-x-2">
                     <!-- Stage Transition Actions -->
-                    @if (o.status === 'CREATED') {
+                    @if (o.status === 'CREATED' && (!o.isPremapped || !o.manufacturer)) {
                       <button
                         (click)="openAssignModal(o, 'MANUFACTURER')"
                         class="px-2.5 py-1 bg-brand-600 hover:bg-brand-700 text-white font-bold text-[11px] rounded-lg shadow-sm"
@@ -143,28 +149,54 @@ import {
                         Assign Manufacturer
                       </button>
                     }
-                    @if (o.status === 'MANUFACTURING_COMPLETED') {
+                    @if (o.status === 'MANUFACTURING_COMPLETED' && (!o.isPremapped || !o.qa)) {
                       <button
                         (click)="openAssignModal(o, 'QA')"
-                        class="px-2.5 py-1 bg-purple-600 hover:bg-purple-700 text-white font-bold text-[11px] rounded-lg shadow-sm items-center space-x-1 inline-flex"
+                        class="px-2.5 py-1 bg-purple-600 hover:bg-purple-700 text-white font-bold text-[11px] rounded-lg shadow-sm flex items-center space-x-1"
                       >
                         <span>Proceed Next &rarr; QA</span>
                       </button>
                     }
-                    @if (o.status === 'QA_COMPLETED') {
+                    @if (o.status === 'QA_COMPLETED' && (!o.isPremapped || !o.packagingTransport)) {
                       <button
                         (click)="openAssignModal(o, 'PACKAGING_TRANSPORT')"
-                        class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold text-[11px] rounded-lg shadow-sm items-center space-x-1 inline-flex"
+                        class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold text-[11px] rounded-lg shadow-sm flex items-center space-x-1"
                       >
                         <span>Proceed Next &rarr; Packaging</span>
                       </button>
                     }
-                    @if (o.status === 'TRANSPORT_COMPLETED') {
+                    @if (o.status === 'TRANSPORT_COMPLETED' && (!o.isPremapped || !o.retailer)) {
                       <button
                         (click)="openAssignModal(o, 'RETAILER')"
-                        class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] rounded-lg shadow-sm items-center space-x-1 inline-flex"
+                        class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] rounded-lg shadow-sm flex items-center space-x-1"
                       >
                         <span>Proceed Next &rarr; Retailer</span>
+                      </button>
+                    }
+                    <!-- Auto-assignment indicator for	premap orders -->
+                    @if (o.status === 'MANUFACTURING_COMPLETED' && o.isPremapped && o.qa) {
+                      <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold rounded-lg">
+                        Auto-assigning QA...
+                      </span>
+                    }
+                    @if (o.status === 'QA_COMPLETED' && o.isPremapped && o.packagingTransport) {
+                      <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold rounded-lg">
+                        Auto-assigning Packaging...
+                      </span>
+                    }
+                    @if (o.status === 'TRANSPORT_COMPLETED' && o.isPremapped && o.retailer) {
+                      <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold rounded-lg">
+                        Auto-assigning Retailer...
+                      </span>
+                    }
+                    <!-- Cancel Order Button -->
+                    @if (canCancelOrder(o)) {
+                      <button
+                        (click)="openCancelModal(o)"
+                        title="Cancel Order"
+                        class="px-2.5 py-1 bg-red-600 hover:bg-red-700 text-white font-bold text-[11px] rounded-lg shadow-sm"
+                      >
+                        Cancel
                       </button>
                     }
                     <!-- Utilities: QR Code & PDF Export -->
@@ -185,131 +217,6 @@ import {
                   </td>
                 </tr>
               }
-=======
-            <tbody class="divide-y divide-slate-100 dark:divide-slate-800 font-medium text-slate-700 dark:text-slate-300">
-              <tr *ngIf="orders().length === 0">
-                <td colspan="7" class="py-8 text-center text-slate-400">
-                  No orders created yet. Click "Create New Order" to start.
-                </td>
-              </tr>
-              <tr *ngFor="let o of orders()" class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
-                <td class="py-4 px-6 font-mono font-extrabold text-slate-900 dark:text-white">
-                  {{ o.orderNumber }}
-                </td>
-                <td class="py-4 px-6 font-bold text-slate-900 dark:text-white">
-                  {{ o.productName }}
-                </td>
-                <td class="py-4 px-6">
-                  {{ o.quantity }} units
-                </td>
-                <td class="py-4 px-6">
-                  <span [class]="getPriorityBadgeClass(o.priority)">
-                    {{ o.priority }}
-                  </span>
-                </td>
-                <td class="py-4 px-6">
-                  <div class="flex items-center space-x-2">
-                    <span [class]="getStatusBadgeClass(o.status)">
-                      {{ getStatusLabel(o.status) }}
-                    </span>
-                    <span *ngIf="o.isPremapped" class="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300">
-                      AUTO-FLOW
-                    </span>
-                  </div>
-                </td>
-                <td class="py-4 px-6 text-[11px] space-y-0.5">
-                  <p *ngIf="o.manufacturer">Mfg: <strong class="text-slate-900 dark:text-white">{{ o.manufacturer.companyName }}</strong></p>
-                  <p *ngIf="o.qa">QA: <strong class="text-slate-900 dark:text-white">{{ o.qa.companyName }}</strong></p>
-                  <p *ngIf="o.packagingTransport">P&T: <strong class="text-slate-900 dark:text-white">{{ o.packagingTransport.companyName }}</strong></p>
-                  <p *ngIf="o.retailer">Retail: <strong class="text-slate-900 dark:text-white">{{ o.retailer.companyName }}</strong></p>
-                </td>
-                <td class="py-4 px-6 text-right space-x-2">
-
-                  <!-- Stage Transition Actions -->
-                  <button
-                    *ngIf="o.status === 'CREATED' && (!o.isPremapped || !o.manufacturer)"
-                    (click)="openAssignModal(o, 'MANUFACTURER')"
-                    class="px-2.5 py-1 bg-brand-600 hover:bg-brand-700 text-white font-bold text-[11px] rounded-lg shadow-sm"
-                  >
-                    Assign Manufacturer
-                  </button>
-
-                  <button
-                    *ngIf="o.status === 'MANUFACTURING_COMPLETED' && (!o.isPremapped || !o.qa)"
-                    (click)="openAssignModal(o, 'QA')"
-                    class="px-2.5 py-1 bg-purple-600 hover:bg-purple-700 text-white font-bold text-[11px] rounded-lg shadow-sm flex items-center space-x-1 inline-flex"
-                  >
-                    <span>Proceed Next &rarr; QA</span>
-                  </button>
-
-                  <button
-                    *ngIf="o.status === 'QA_COMPLETED' && (!o.isPremapped || !o.packagingTransport)"
-                    (click)="openAssignModal(o, 'PACKAGING_TRANSPORT')"
-                    class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold text-[11px] rounded-lg shadow-sm flex items-center space-x-1 inline-flex"
-                  >
-                    <span>Proceed Next &rarr; Packaging</span>
-                  </button>
-
-                  <button
-                    *ngIf="o.status === 'TRANSPORT_COMPLETED' && (!o.isPremapped || !o.retailer)"
-                    (click)="openAssignModal(o, 'RETAILER')"
-                    class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] rounded-lg shadow-sm flex items-center space-x-1 inline-flex"
-                  >
-                    <span>Proceed Next &rarr; Retailer</span>
-                  </button>
-
-                  <!-- Auto-assignment indicator for premap orders -->
-                  <span
-                    *ngIf="o.status === 'MANUFACTURING_COMPLETED' && o.isPremapped && o.qa"
-                    class="px-2 py-1 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold rounded-lg"
-                  >
-                    Auto-assigning QA...
-                  </span>
-
-                  <span
-                    *ngIf="o.status === 'QA_COMPLETED' && o.isPremapped && o.packagingTransport"
-                    class="px-2 py-1 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold rounded-lg"
-                  >
-                    Auto-assigning Packaging...
-                  </span>
-
-                  <span
-                    *ngIf="o.status === 'TRANSPORT_COMPLETED' && o.isPremapped && o.retailer"
-                    class="px-2 py-1 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold rounded-lg"
-                  >
-                    Auto-assigning Retailer...
-                  </span>
-
-                  <!-- Cancel Order Button -->
-                  <button 
-                    *ngIf="canCancelOrder(o)"
-                    (click)="openCancelModal(o)"
-                    title="Cancel Order"
-                    class="px-2.5 py-1 bg-red-600 hover:bg-red-700 text-white font-bold text-[11px] rounded-lg shadow-sm"
-                  >
-                    Cancel
-                  </button>
-
-                  <!-- Utilities: QR Code & PDF Export -->
-                  <button 
-                    (click)="openQrModal(o)"
-                    title="View QR Code"
-                    class="p-1 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
-                  >
-                    <span class="material-symbols-outlined text-lg">qr_code</span>
-                  </button>
-
-                  <button 
-                    (click)="exportPdf(o)"
-                    title="Export PDF Certificate"
-                    class="p-1 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
-                  >
-                    <span class="material-symbols-outlined text-lg">picture_as_pdf</span>
-                  </button>
-
-                </td>
-              </tr>
->>>>>>> e7d6447 (Added the Defect Detection Procedure and Auto Assignment of Stakeholders)
             </tbody>
           </table>
         </div>
@@ -412,8 +319,6 @@ import {
             </div>
           </form>
         </div>
-<<<<<<< HEAD
-=======
 
         <form (ngSubmit)="createOrder()" class="space-y-4">
           <div>
@@ -489,7 +394,6 @@ import {
           </div>
         </form>
 
->>>>>>> e7d6447 (Added the Defect Detection Procedure and Auto Assignment of Stakeholders)
       </div>
     }
 
@@ -605,16 +509,13 @@ import {
           </button>
         </div>
       </div>
-<<<<<<< HEAD
     }
-  `,
-=======
-    </div>
 
     <!-- CANCEL ORDER MODAL -->
-    <div *ngIf="showCancelModal()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in">
+    @if (showCancelModal()) {
+      <div class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in">
       <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6">
-        
+
         <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
           <div>
             <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">Cancel Order</h3>
@@ -649,8 +550,8 @@ import {
 
       </div>
     </div>
+    }
   `
->>>>>>> e7d6447 (Added the Defect Detection Procedure and Auto Assignment of Stakeholders)
 })
 export class OrgOrdersComponent implements OnInit {
   private orderService = inject(OrderService);
@@ -677,13 +578,10 @@ export class OrgOrdersComponent implements OnInit {
     description: '',
     quantity: 100,
     priority: 'HIGH' as OrderPriority,
-<<<<<<< HEAD
-=======
     manufacturerId: null as number | null,
     qaId: null as number | null,
     packagingTransportId: null as number | null,
     retailerId: null as number | null
->>>>>>> e7d6447 (Added the Defect Detection Procedure and Auto Assignment of Stakeholders)
   };
 
   // Stakeholder lists for premapping

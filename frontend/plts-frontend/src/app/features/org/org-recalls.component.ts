@@ -82,28 +82,34 @@ import { HttpClient } from '@angular/common/http';
       </div>
 
       <!-- Initiate Recall Form Modal -->
-      <div *ngIf="showInitiateForm()" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6">
-          <div class="flex items-center justify-between">
-            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Initiate New Recall</h2>
-            <button (click)="showInitiateForm.set(false)" class="text-slate-400 hover:text-slate-600">
-              <span class="material-symbols-outlined">close</span>
-            </button>
-          </div>
+      @if (showInitiateForm()) {
+        <div class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in">
+          <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+              <div>
+                <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">Initiate New Recall</h3>
+                <p class="text-xs text-slate-400">Initiate product recall for defective items</p>
+              </div>
+              <button (click)="showInitiateForm.set(false)" class="p-1 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <span class="material-symbols-outlined text-xl">close</span>
+              </button>
+            </div>
 
           <form [formGroup]="recallForm" (ngSubmit)="initiateRecall()" class="space-y-4">
             <div>
               <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Defect Case</label>
-              <select formControlName="defectCaseId" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm">
+              <select formControlName="defectCaseId" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
                 <option value="">Select defect case</option>
-                <option *ngFor="let defect of defectCases()" [value]="defect.id">{{ defect.defectCaseId }} - {{ defect.defectCategory }}</option>
+                @for (defect of defectCases(); track defect) {
+                  <option [value]="defect.id">{{ defect.defectCaseId }} - {{ defect.defectCategory }}</option>
+                }
               </select>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Recall Scope</label>
-                <select formControlName="recallScope" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm">
+                <select formControlName="recallScope" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
                   <option value="">Select scope</option>
                   <option value="BATCH_SPECIFIC">Batch Specific</option>
                   <option value="PRODUCT_SPECIFIC">Product Specific</option>
@@ -112,18 +118,18 @@ import { HttpClient } from '@angular/common/http';
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Affected Product Count</label>
-                <input type="number" formControlName="affectedProductCount" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Enter count">
+                <input type="number" formControlName="affectedProductCount" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Enter count">
               </div>
             </div>
 
             <div>
               <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Affected Batches</label>
-              <input type="text" formControlName="affectedBatches" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Comma-separated batch numbers">
+              <input type="text" formControlName="affectedBatches" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Comma-separated batch numbers">
             </div>
 
             <div>
               <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Priority</label>
-              <select formControlName="priority" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm">
+              <select formControlName="priority" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
                 <option value="">Select priority</option>
                 <option value="LOW">Low</option>
                 <option value="MEDIUM">Medium</option>
@@ -134,29 +140,33 @@ import { HttpClient } from '@angular/common/http';
 
             <div>
               <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Recall Reason</label>
-              <textarea formControlName="recallReason" rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Describe the reason for recall"></textarea>
+              <textarea formControlName="recallReason" rows="3" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Describe the reason for recall"></textarea>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Estimated Cost</label>
-                <input type="number" formControlName="estimatedCost" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm" placeholder="Enter estimated cost">
+                <input type="number" formControlName="estimatedCost" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none" placeholder="Enter estimated cost">
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Estimated Completion Date</label>
-                <input type="date" formControlName="estimatedCompletionDate" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm">
+                <input type="date" formControlName="estimatedCompletionDate" class="w-full px-3.5 py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-xs focus:ring-2 focus:ring-brand-500/50 focus:outline-none">
               </div>
             </div>
 
-            <div class="flex justify-end space-x-3">
-              <button type="button" (click)="showInitiateForm.set(false)" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-semibold hover:bg-slate-300">Cancel</button>
-              <button type="submit" [disabled]="submitting()" class="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-semibold hover:bg-red-700 disabled:opacity-50">
-                {{ submitting() ? 'Initiating...' : 'Initiate Recall' }}
+            <div class="flex space-x-3 pt-2">
+              <button type="button" (click)="showInitiateForm.set(false)" class="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl">Cancel</button>
+              <button type="submit" [disabled]="submitting()" class="flex-1 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-md shadow-red-500/20 disabled:opacity-50">
+                @if (submitting()) {
+                  <span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                }
+                <span>{{ submitting() ? 'Initiating...' : 'Initiate Recall' }}</span>
               </button>
             </div>
           </form>
         </div>
       </div>
+    }
 
       <!-- Recall Cases List -->
       <div class="glass-card rounded-2xl overflow-hidden">
@@ -165,48 +175,58 @@ import { HttpClient } from '@angular/common/http';
           <p class="text-xs text-slate-500">Track all recall cases and their progress</p>
         </div>
 
-        <div *ngIf="loading()" class="p-8 text-center text-slate-500">
-          <span class="material-symbols-outlined animate-spin text-3xl">refresh</span>
-          <p class="mt-2">Loading recall cases...</p>
-        </div>
-
-        <div *ngIf="!loading() && recallCases().length === 0" class="p-8 text-center text-slate-500">
-          <span class="material-symbols-outlined text-4xl">inbox</span>
-          <p class="mt-2">No recall cases initiated yet</p>
-        </div>
-
-        <div *ngIf="!loading() && recallCases().length > 0" class="divide-y divide-slate-200 dark:divide-slate-700">
-          <div *ngFor="let recall of recallCases()" class="p-6 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer" (click)="selectRecall(recall)">
-            <div class="flex items-start justify-between">
-              <div class="flex-1">
-                <div class="flex items-center space-x-3 mb-2">
-                  <span [class]="'px-2 py-1 rounded-full text-xs font-bold ' + getStatusClass(recall.status)">
-                    {{ recall.status }}
-                  </span>
-                  <span class="text-xs text-slate-500">{{ recall.recallId }}</span>
-                  <span [class]="'px-2 py-1 rounded-full text-xs font-bold ' + getPriorityClass(recall.priority)">
-                    {{ recall.priority }}
-                  </span>
-                </div>
-                <h3 class="font-semibold text-slate-900 dark:text-white">{{ recall.recallReason || 'No reason provided' }}</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Scope: {{ recall.recallScope }} | Affected: {{ recall.affectedProductCount }} products</p>
-                <div class="flex items-center space-x-4 mt-3 text-xs text-slate-500">
-                  <span>Initiated by: {{ recall.initiatedByName }}</span>
-                  <span>Approved by: {{ recall.approvedByName }}</span>
-                  <span *ngIf="recall.estimatedCompletionDate">Due: {{ recall.estimatedCompletionDate | date:'short' }}</span>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2">
-                <button (click)="viewImpactReport(recall)" class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="View Impact Report">
-                  <span class="material-symbols-outlined">assessment</span>
-                </button>
-                <button (click)="updateStatus(recall)" class="p-2 text-amber-600 hover:bg-amber-50 rounded-lg" title="Update Status">
-                  <span class="material-symbols-outlined">edit</span>
-                </button>
-              </div>
-            </div>
+        @if (loading()) {
+          <div class="p-8 text-center text-slate-500">
+            <span class="material-symbols-outlined animate-spin text-3xl">refresh</span>
+            <p class="mt-2">Loading recall cases...</p>
           </div>
-        </div>
+        }
+
+        @if (!loading() && recallCases().length === 0) {
+          <div class="p-8 text-center text-slate-500">
+            <span class="material-symbols-outlined text-4xl">inbox</span>
+            <p class="mt-2">No recall cases initiated yet</p>
+          </div>
+        }
+
+        @if (!loading() && recallCases().length > 0) {
+          <div class="divide-y divide-slate-200 dark:divide-slate-700">
+            @for (recall of recallCases(); track recall) {
+              <div class="p-6 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer" (click)="selectRecall(recall)">
+                <div class="flex items-start justify-between">
+                  <div class="flex-1">
+                    <div class="flex items-center space-x-3 mb-2">
+                      <span [class]="'px-2 py-1 rounded-full text-xs font-bold ' + getStatusClass(recall.status)">
+                        {{ recall.status }}
+                      </span>
+                      <span class="text-xs text-slate-500">{{ recall.recallId }}</span>
+                      <span [class]="'px-2 py-1 rounded-full text-xs font-bold ' + getPriorityClass(recall.priority)">
+                        {{ recall.priority }}
+                      </span>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 dark:text-white">{{ recall.recallReason || 'No reason provided' }}</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Scope: {{ recall.recallScope }} | Affected: {{ recall.affectedProductCount }} products</p>
+                    <div class="flex items-center space-x-4 mt-3 text-xs text-slate-500">
+                      <span>Initiated by: {{ recall.initiatedByName }}</span>
+                      <span>Approved by: {{ recall.approvedByName }}</span>
+                      @if (recall.estimatedCompletionDate) {
+                        <span>Due: {{ recall.estimatedCompletionDate | date:'short' }}</span>
+                      }
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <button (click)="viewImpactReport(recall)" class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="View Impact Report">
+                      <span class="material-symbols-outlined">assessment</span>
+                    </button>
+                    <button (click)="updateStatus(recall)" class="p-2 text-amber-600 hover:bg-amber-50 rounded-lg" title="Update Status">
+                      <span class="material-symbols-outlined">edit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        }
       </div>
 
     </div>

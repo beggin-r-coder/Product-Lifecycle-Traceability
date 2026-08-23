@@ -1,11 +1,11 @@
 -------------------------------------------------------------------------------
 Test set: com.tcs.plts.PltsApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 12.82 s <<< FAILURE! -- in com.tcs.plts.PltsApplicationTests
-com.tcs.plts.PltsApplicationTests.contextLoads -- Time elapsed: 10.67 s <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 13.21 s <<< FAILURE! -- in com.tcs.plts.PltsApplicationTests
+com.tcs.plts.PltsApplicationTests.contextLoads -- Time elapsed: 10.70 s <<< ERROR!
 java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
 	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
-	at jdk.proxy2/jdk.proxy2.$Proxy171.getHandler(Unknown Source)
+	at jdk.proxy2/jdk.proxy2.$Proxy176.getHandler(Unknown Source)
 	at org.mockito.internal.util.MockUtil.getMockHandlerOrNull(MockUtil.java:158)
 	at org.mockito.internal.util.MockUtil.isMock(MockUtil.java:147)
 	at org.mockito.internal.util.DefaultMockingDetails.isMock(DefaultMockingDetails.java:32)
@@ -19,7 +19,7 @@ java.lang.IllegalStateException: Could not initialize plugin: interface org.mock
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 	Suppressed: java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
 		at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
-		at jdk.proxy2/jdk.proxy2.$Proxy171.getHandler(Unknown Source)
+		at jdk.proxy2/jdk.proxy2.$Proxy176.getHandler(Unknown Source)
 		at org.mockito.internal.util.MockUtil.getMockHandlerOrNull(MockUtil.java:158)
 		at org.mockito.internal.util.MockUtil.isMock(MockUtil.java:147)
 		at org.mockito.internal.util.DefaultMockingDetails.isMock(DefaultMockingDetails.java:32)
@@ -76,3 +76,4 @@ OS version         : 26.5.2
 		at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:133)
 		... 19 more
 Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker]
+

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.tcs.plts.PltsApplicationTests" time="12.823" tests="1" errors="1" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.tcs.plts.PltsApplicationTests" time="13.211" tests="1" errors="1" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/test-classes:/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/classes:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.0/spring-boot-starter-web-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.0/spring-boot-starter-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.0/spring-boot-starter-logging-3.3.0.jar:/Users/anishkadas/.m2/repository/ch/qos/logback/logback-classic/1.5.6/logback-classic-1.5.6.jar:/Users/anishkadas/.m2/repository/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar:/Users/anishkadas/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/Users/anishkadas/.m2/repository/org/slf4j/jul-to-slf4j/2.0.13/jul-to-slf4j-2.0.13.jar:/Users/anishkadas/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/Users/anishkadas/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.0/spring-boot-starter-json-3.3.0.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.1/jackson-datatype-jdk8-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.1/jackson-datatype-jsr310-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.1/jackson-module-parameter-names-2.17.1.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.0/spring-boot-starter-tomcat-3.3.0.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.24/tomcat-embed-core-10.1.24.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.24/tomcat-embed-websocket-10.1.24.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-web/6.1.8/spring-web-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-beans/6.1.8/spring-beans-6.1.8.jar:/Users/anishkadas/.m2/repository/io/micrometer/micrometer-observation/1.13.0/micrometer-observation-1.13.0.jar:/Users/anishkadas/.m2/repository/io/micrometer/micrometer-commons/1.13.0/micrometer-commons-1.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-webmvc/6.1.8/spring-webmvc-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-context/6.1.8/spring-context-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-expression/6.1.8/spring-expression-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.0/spring-boot-starter-security-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-aop/6.1.8/spring-aop-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-config/6.3.0/spring-security-config-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-web/6.3.0/spring-security-web-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.0/spring-boot-starter-validation-3.3.0.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.24/tomcat-embed-el-10.1.24.jar:/Users/anishkadas/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/Users/anishkadas/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/Users/anishkadas/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/Users/anishkadas/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-mail/3.3.0/spring-boot-starter-mail-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-context-support/6.1.8/spring-context-support-6.1.8.jar:/Users/anishkadas/.m2/repository/org/eclipse/angus/jakarta.mail/2.0.3/jakarta.mail-2.0.3.jar:/Users/anishkadas/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/Users/anishkadas/.m2/repository/org/eclipse/angus/angus-activation/2.0.2/angus-activation-2.0.2.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.3.0/spring-boot-starter-data-jpa-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.3.0/spring-boot-starter-aop-3.3.0.jar:/Users/anishkadas/.m2/repository/org/aspectj/aspectjweaver/1.9.22/aspectjweaver-1.9.22.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.0/spring-boot-starter-jdbc-3.3.0.jar:/Users/anishkadas/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-jdbc/6.1.8/spring-jdbc-6.1.8.jar:/Users/anishkadas/.m2/repository/org/hibernate/orm/hibernate-core/6.5.2.Final/hibernate-core-6.5.2.Final.jar:/Users/anishkadas/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/Users/anishkadas/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Users/anishkadas/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/Users/anishkadas/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/Users/anishkadas/.m2/repository/net/bytebuddy/byte-buddy/1.14.16/byte-buddy-1.14.16.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.5/jaxb-runtime-4.0.5.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/txw2/4.0.5/txw2-4.0.5.jar:/Users/anishkadas/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/Users/anishkadas/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Users/anishkadas/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/data/spring-data-jpa/3.3.0/spring-data-jpa-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/data/spring-data-commons/3.3.0/spring-data-commons-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-orm/6.1.8/spring-orm-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-tx/6.1.8/spring-tx-6.1.8.jar:/Users/anishkadas/.m2/repository/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-aspects/6.1.8/spring-aspects-6.1.8.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-api/0.12.5/jjwt-api-0.12.5.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-impl/0.12.5/jjwt-impl-0.12.5.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.12.5/jjwt-jackson-0.12.5.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar:/Users/anishkadas/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/Users/anishkadas/.m2/repository/org/projectlombok/lombok/1.18.40/lombok-1.18.40.jar:/Users/anishkadas/.m2/repository/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar:/Users/anishkadas/.m2/repository/com/google/zxing/core/3.5.3/core-3.5.3.jar:/Users/anishkadas/.m2/repository/com/google/zxing/javase/3.5.3/javase-3.5.3.jar:/Users/anishkadas/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar:/Users/anishkadas/.m2/repository/com/github/jai-imageio/jai-imageio-core/1.4.0/jai-imageio-core-1.4.0.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi-ooxml/5.2.5/poi-ooxml-5.2.5.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi/5.2.5/poi-5.2.5.jar:/Users/anishkadas/.m2/repository/commons-codec/commons-codec/1.16.1/commons-codec-1.16.1.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar:/Users/anishkadas/.m2/repository/com/zaxxer/SparseBitSet/1.3/SparseBitSet-1.3.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi-ooxml-lite/5.2.5/poi-ooxml-lite-5.2.5.jar:/Users/anishkadas/.m2/repository/org/apache/xmlbeans/xmlbeans/5.2.0/xmlbeans-5.2.0.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-compress/1.25.0/commons-compress-1.25.0.jar:/Users/anishkadas/.m2/repository/commons-io/commons-io/2.15.0/commons-io-2.15.0.jar:/Users/anishkadas/.m2/repository/com/github/virtuald/curvesapi/1.08/curvesapi-1.08.jar:/Users/anishkadas/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar:/Users/anishkadas/.m2/repository/com/github/librepdf/openpdf/1.3.30/openpdf-1.3.30.jar:/Users/anishkadas/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.5.0/springdoc-openapi-starter-webmvc-ui-2.5.0.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.5.0/springdoc-openapi-starter-webmvc-api-2.5.0.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.5.0/springdoc-openapi-starter-common-2.5.0.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.21/swagger-core-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.21/swagger-annotations-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.21/swagger-models-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.1/jackson-dataformat-yaml-2.17.1.jar:/Users/anishkadas/.m2/repository/org/webjars/swagger-ui/5.13.0/swagger-ui-5.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-devtools/3.3.0/spring-boot-devtools-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot/3.3.0/spring-boot-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.0/spring-boot-autoconfigure-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.0/spring-boot-starter-test-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-test/3.3.0/spring-boot-test-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.0/spring-boot-test-autoconfigure-3.3.0.jar:/Users/anishkadas/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/Users/anishkadas/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/Users/anishkadas/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/Users/anishkadas/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/Users/anishkadas/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/Users/anishkadas/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/Users/anishkadas/.m2/repository/org/awaitility/awaitility/4.2.1/awaitility-4.2.1.jar:/Users/anishkadas/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/Users/anishkadas/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/anishkadas/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/Users/anishkadas/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:/Users/anishkadas/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/Users/anishkadas/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.16/byte-buddy-agent-1.14.16.jar:/Users/anishkadas/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/anishkadas/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/Users/anishkadas/.m2/repository/org/skyscreamer/jsonassert/1.5.1/jsonassert-1.5.1.jar:/Users/anishkadas/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-core/6.1.8/spring-core-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-jcl/6.1.8/spring-jcl-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-test/6.1.8/spring-test-6.1.8.jar:/Users/anishkadas/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-test/6.3.0/spring-security-test-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-core/6.3.0/spring-security-core-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-crypto/6.3.0/spring-security-crypto-6.3.0.jar:"/>
+    <property name="java.class.path" value="/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/test-classes:/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/classes:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.0/spring-boot-starter-web-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.0/spring-boot-starter-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.0/spring-boot-starter-logging-3.3.0.jar:/Users/anishkadas/.m2/repository/ch/qos/logback/logback-classic/1.5.6/logback-classic-1.5.6.jar:/Users/anishkadas/.m2/repository/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar:/Users/anishkadas/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/Users/anishkadas/.m2/repository/org/slf4j/jul-to-slf4j/2.0.13/jul-to-slf4j-2.0.13.jar:/Users/anishkadas/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/Users/anishkadas/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.0/spring-boot-starter-json-3.3.0.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.1/jackson-datatype-jdk8-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.1/jackson-datatype-jsr310-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.1/jackson-module-parameter-names-2.17.1.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.0/spring-boot-starter-tomcat-3.3.0.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.24/tomcat-embed-core-10.1.24.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.24/tomcat-embed-websocket-10.1.24.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-web/6.1.8/spring-web-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-beans/6.1.8/spring-beans-6.1.8.jar:/Users/anishkadas/.m2/repository/io/micrometer/micrometer-observation/1.13.0/micrometer-observation-1.13.0.jar:/Users/anishkadas/.m2/repository/io/micrometer/micrometer-commons/1.13.0/micrometer-commons-1.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-webmvc/6.1.8/spring-webmvc-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-context/6.1.8/spring-context-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-expression/6.1.8/spring-expression-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.0/spring-boot-starter-security-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-aop/6.1.8/spring-aop-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-config/6.3.0/spring-security-config-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-web/6.3.0/spring-security-web-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.0/spring-boot-starter-validation-3.3.0.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.24/tomcat-embed-el-10.1.24.jar:/Users/anishkadas/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/Users/anishkadas/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/Users/anishkadas/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/Users/anishkadas/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-mail/3.3.0/spring-boot-starter-mail-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-context-support/6.1.8/spring-context-support-6.1.8.jar:/Users/anishkadas/.m2/repository/org/eclipse/angus/jakarta.mail/2.0.3/jakarta.mail-2.0.3.jar:/Users/anishkadas/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/Users/anishkadas/.m2/repository/org/eclipse/angus/angus-activation/2.0.2/angus-activation-2.0.2.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.3.0/spring-boot-starter-data-jpa-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.3.0/spring-boot-starter-aop-3.3.0.jar:/Users/anishkadas/.m2/repository/org/aspectj/aspectjweaver/1.9.22/aspectjweaver-1.9.22.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.0/spring-boot-starter-jdbc-3.3.0.jar:/Users/anishkadas/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-jdbc/6.1.8/spring-jdbc-6.1.8.jar:/Users/anishkadas/.m2/repository/org/hibernate/orm/hibernate-core/6.5.2.Final/hibernate-core-6.5.2.Final.jar:/Users/anishkadas/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/Users/anishkadas/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Users/anishkadas/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/Users/anishkadas/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/Users/anishkadas/.m2/repository/net/bytebuddy/byte-buddy/1.14.16/byte-buddy-1.14.16.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.5/jaxb-runtime-4.0.5.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/txw2/4.0.5/txw2-4.0.5.jar:/Users/anishkadas/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/Users/anishkadas/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Users/anishkadas/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/data/spring-data-jpa/3.3.0/spring-data-jpa-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/data/spring-data-commons/3.3.0/spring-data-commons-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-orm/6.1.8/spring-orm-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-tx/6.1.8/spring-tx-6.1.8.jar:/Users/anishkadas/.m2/repository/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-aspects/6.1.8/spring-aspects-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-websocket/3.3.0/spring-boot-starter-websocket-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-messaging/6.1.8/spring-messaging-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-websocket/6.1.8/spring-websocket-6.1.8.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-api/0.12.5/jjwt-api-0.12.5.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-impl/0.12.5/jjwt-impl-0.12.5.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.12.5/jjwt-jackson-0.12.5.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar:/Users/anishkadas/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/Users/anishkadas/.m2/repository/org/projectlombok/lombok/1.18.40/lombok-1.18.40.jar:/Users/anishkadas/.m2/repository/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar:/Users/anishkadas/.m2/repository/com/google/zxing/core/3.5.3/core-3.5.3.jar:/Users/anishkadas/.m2/repository/com/google/zxing/javase/3.5.3/javase-3.5.3.jar:/Users/anishkadas/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar:/Users/anishkadas/.m2/repository/com/github/jai-imageio/jai-imageio-core/1.4.0/jai-imageio-core-1.4.0.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi-ooxml/5.2.5/poi-ooxml-5.2.5.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi/5.2.5/poi-5.2.5.jar:/Users/anishkadas/.m2/repository/commons-codec/commons-codec/1.16.1/commons-codec-1.16.1.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar:/Users/anishkadas/.m2/repository/com/zaxxer/SparseBitSet/1.3/SparseBitSet-1.3.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi-ooxml-lite/5.2.5/poi-ooxml-lite-5.2.5.jar:/Users/anishkadas/.m2/repository/org/apache/xmlbeans/xmlbeans/5.2.0/xmlbeans-5.2.0.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-compress/1.25.0/commons-compress-1.25.0.jar:/Users/anishkadas/.m2/repository/commons-io/commons-io/2.15.0/commons-io-2.15.0.jar:/Users/anishkadas/.m2/repository/com/github/virtuald/curvesapi/1.08/curvesapi-1.08.jar:/Users/anishkadas/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar:/Users/anishkadas/.m2/repository/com/github/librepdf/openpdf/1.3.30/openpdf-1.3.30.jar:/Users/anishkadas/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.5.0/springdoc-openapi-starter-webmvc-ui-2.5.0.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.5.0/springdoc-openapi-starter-webmvc-api-2.5.0.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.5.0/springdoc-openapi-starter-common-2.5.0.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.21/swagger-core-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.21/swagger-annotations-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.21/swagger-models-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.1/jackson-dataformat-yaml-2.17.1.jar:/Users/anishkadas/.m2/repository/org/webjars/swagger-ui/5.13.0/swagger-ui-5.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-devtools/3.3.0/spring-boot-devtools-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot/3.3.0/spring-boot-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.0/spring-boot-autoconfigure-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.0/spring-boot-starter-test-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-test/3.3.0/spring-boot-test-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.0/spring-boot-test-autoconfigure-3.3.0.jar:/Users/anishkadas/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/Users/anishkadas/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/Users/anishkadas/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/Users/anishkadas/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/Users/anishkadas/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/Users/anishkadas/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/Users/anishkadas/.m2/repository/org/awaitility/awaitility/4.2.1/awaitility-4.2.1.jar:/Users/anishkadas/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/Users/anishkadas/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/anishkadas/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/Users/anishkadas/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:/Users/anishkadas/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/Users/anishkadas/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.16/byte-buddy-agent-1.14.16.jar:/Users/anishkadas/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/anishkadas/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/Users/anishkadas/.m2/repository/org/skyscreamer/jsonassert/1.5.1/jsonassert-1.5.1.jar:/Users/anishkadas/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-core/6.1.8/spring-core-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-jcl/6.1.8/spring-jcl-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-test/6.1.8/spring-test-6.1.8.jar:/Users/anishkadas/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-test/6.3.0/spring-security-test-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-core/6.3.0/spring-security-core-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-crypto/6.3.0/spring-security-crypto-6.3.0.jar:"/>
     <property name="java.vm.vendor" value="Homebrew"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://github.com/Homebrew/homebrew-core/issues"/>
@@ -14,9 +14,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/25.0.2/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/surefire/surefirebooter-20260807192145803_3.jar /Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/surefire 2026-08-07T19-21-45_767-jvmRun1 surefire-20260807192145803_1tmp surefire_0-20260807192145803_2tmp"/>
+    <property name="sun.java.command" value="/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/surefire/surefirebooter-20260823182210219_3.jar /Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/surefire 2026-08-23T18-22-10_175-jvmRun1 surefire-20260823182210219_1tmp surefire_0-20260823182210219_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/test-classes:/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/classes:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.0/spring-boot-starter-web-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.0/spring-boot-starter-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.0/spring-boot-starter-logging-3.3.0.jar:/Users/anishkadas/.m2/repository/ch/qos/logback/logback-classic/1.5.6/logback-classic-1.5.6.jar:/Users/anishkadas/.m2/repository/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar:/Users/anishkadas/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/Users/anishkadas/.m2/repository/org/slf4j/jul-to-slf4j/2.0.13/jul-to-slf4j-2.0.13.jar:/Users/anishkadas/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/Users/anishkadas/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.0/spring-boot-starter-json-3.3.0.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.1/jackson-datatype-jdk8-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.1/jackson-datatype-jsr310-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.1/jackson-module-parameter-names-2.17.1.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.0/spring-boot-starter-tomcat-3.3.0.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.24/tomcat-embed-core-10.1.24.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.24/tomcat-embed-websocket-10.1.24.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-web/6.1.8/spring-web-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-beans/6.1.8/spring-beans-6.1.8.jar:/Users/anishkadas/.m2/repository/io/micrometer/micrometer-observation/1.13.0/micrometer-observation-1.13.0.jar:/Users/anishkadas/.m2/repository/io/micrometer/micrometer-commons/1.13.0/micrometer-commons-1.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-webmvc/6.1.8/spring-webmvc-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-context/6.1.8/spring-context-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-expression/6.1.8/spring-expression-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.0/spring-boot-starter-security-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-aop/6.1.8/spring-aop-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-config/6.3.0/spring-security-config-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-web/6.3.0/spring-security-web-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.0/spring-boot-starter-validation-3.3.0.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.24/tomcat-embed-el-10.1.24.jar:/Users/anishkadas/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/Users/anishkadas/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/Users/anishkadas/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/Users/anishkadas/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-mail/3.3.0/spring-boot-starter-mail-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-context-support/6.1.8/spring-context-support-6.1.8.jar:/Users/anishkadas/.m2/repository/org/eclipse/angus/jakarta.mail/2.0.3/jakarta.mail-2.0.3.jar:/Users/anishkadas/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/Users/anishkadas/.m2/repository/org/eclipse/angus/angus-activation/2.0.2/angus-activation-2.0.2.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.3.0/spring-boot-starter-data-jpa-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.3.0/spring-boot-starter-aop-3.3.0.jar:/Users/anishkadas/.m2/repository/org/aspectj/aspectjweaver/1.9.22/aspectjweaver-1.9.22.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.0/spring-boot-starter-jdbc-3.3.0.jar:/Users/anishkadas/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-jdbc/6.1.8/spring-jdbc-6.1.8.jar:/Users/anishkadas/.m2/repository/org/hibernate/orm/hibernate-core/6.5.2.Final/hibernate-core-6.5.2.Final.jar:/Users/anishkadas/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/Users/anishkadas/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Users/anishkadas/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/Users/anishkadas/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/Users/anishkadas/.m2/repository/net/bytebuddy/byte-buddy/1.14.16/byte-buddy-1.14.16.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.5/jaxb-runtime-4.0.5.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/txw2/4.0.5/txw2-4.0.5.jar:/Users/anishkadas/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/Users/anishkadas/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Users/anishkadas/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/data/spring-data-jpa/3.3.0/spring-data-jpa-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/data/spring-data-commons/3.3.0/spring-data-commons-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-orm/6.1.8/spring-orm-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-tx/6.1.8/spring-tx-6.1.8.jar:/Users/anishkadas/.m2/repository/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-aspects/6.1.8/spring-aspects-6.1.8.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-api/0.12.5/jjwt-api-0.12.5.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-impl/0.12.5/jjwt-impl-0.12.5.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.12.5/jjwt-jackson-0.12.5.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar:/Users/anishkadas/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/Users/anishkadas/.m2/repository/org/projectlombok/lombok/1.18.40/lombok-1.18.40.jar:/Users/anishkadas/.m2/repository/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar:/Users/anishkadas/.m2/repository/com/google/zxing/core/3.5.3/core-3.5.3.jar:/Users/anishkadas/.m2/repository/com/google/zxing/javase/3.5.3/javase-3.5.3.jar:/Users/anishkadas/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar:/Users/anishkadas/.m2/repository/com/github/jai-imageio/jai-imageio-core/1.4.0/jai-imageio-core-1.4.0.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi-ooxml/5.2.5/poi-ooxml-5.2.5.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi/5.2.5/poi-5.2.5.jar:/Users/anishkadas/.m2/repository/commons-codec/commons-codec/1.16.1/commons-codec-1.16.1.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar:/Users/anishkadas/.m2/repository/com/zaxxer/SparseBitSet/1.3/SparseBitSet-1.3.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi-ooxml-lite/5.2.5/poi-ooxml-lite-5.2.5.jar:/Users/anishkadas/.m2/repository/org/apache/xmlbeans/xmlbeans/5.2.0/xmlbeans-5.2.0.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-compress/1.25.0/commons-compress-1.25.0.jar:/Users/anishkadas/.m2/repository/commons-io/commons-io/2.15.0/commons-io-2.15.0.jar:/Users/anishkadas/.m2/repository/com/github/virtuald/curvesapi/1.08/curvesapi-1.08.jar:/Users/anishkadas/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar:/Users/anishkadas/.m2/repository/com/github/librepdf/openpdf/1.3.30/openpdf-1.3.30.jar:/Users/anishkadas/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.5.0/springdoc-openapi-starter-webmvc-ui-2.5.0.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.5.0/springdoc-openapi-starter-webmvc-api-2.5.0.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.5.0/springdoc-openapi-starter-common-2.5.0.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.21/swagger-core-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.21/swagger-annotations-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.21/swagger-models-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.1/jackson-dataformat-yaml-2.17.1.jar:/Users/anishkadas/.m2/repository/org/webjars/swagger-ui/5.13.0/swagger-ui-5.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-devtools/3.3.0/spring-boot-devtools-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot/3.3.0/spring-boot-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.0/spring-boot-autoconfigure-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.0/spring-boot-starter-test-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-test/3.3.0/spring-boot-test-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.0/spring-boot-test-autoconfigure-3.3.0.jar:/Users/anishkadas/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/Users/anishkadas/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/Users/anishkadas/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/Users/anishkadas/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/Users/anishkadas/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/Users/anishkadas/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/Users/anishkadas/.m2/repository/org/awaitility/awaitility/4.2.1/awaitility-4.2.1.jar:/Users/anishkadas/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/Users/anishkadas/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/anishkadas/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/Users/anishkadas/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:/Users/anishkadas/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/Users/anishkadas/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.16/byte-buddy-agent-1.14.16.jar:/Users/anishkadas/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/anishkadas/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/Users/anishkadas/.m2/repository/org/skyscreamer/jsonassert/1.5.1/jsonassert-1.5.1.jar:/Users/anishkadas/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-core/6.1.8/spring-core-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-jcl/6.1.8/spring-jcl-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-test/6.1.8/spring-test-6.1.8.jar:/Users/anishkadas/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-test/6.3.0/spring-security-test-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-core/6.3.0/spring-security-core-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-crypto/6.3.0/spring-security-crypto-6.3.0.jar:"/>
+    <property name="surefire.test.class.path" value="/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/test-classes:/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/classes:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.0/spring-boot-starter-web-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.0/spring-boot-starter-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.0/spring-boot-starter-logging-3.3.0.jar:/Users/anishkadas/.m2/repository/ch/qos/logback/logback-classic/1.5.6/logback-classic-1.5.6.jar:/Users/anishkadas/.m2/repository/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar:/Users/anishkadas/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/Users/anishkadas/.m2/repository/org/slf4j/jul-to-slf4j/2.0.13/jul-to-slf4j-2.0.13.jar:/Users/anishkadas/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/Users/anishkadas/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.0/spring-boot-starter-json-3.3.0.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.1/jackson-datatype-jdk8-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.1/jackson-datatype-jsr310-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.1/jackson-module-parameter-names-2.17.1.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.0/spring-boot-starter-tomcat-3.3.0.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.24/tomcat-embed-core-10.1.24.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.24/tomcat-embed-websocket-10.1.24.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-web/6.1.8/spring-web-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-beans/6.1.8/spring-beans-6.1.8.jar:/Users/anishkadas/.m2/repository/io/micrometer/micrometer-observation/1.13.0/micrometer-observation-1.13.0.jar:/Users/anishkadas/.m2/repository/io/micrometer/micrometer-commons/1.13.0/micrometer-commons-1.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-webmvc/6.1.8/spring-webmvc-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-context/6.1.8/spring-context-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-expression/6.1.8/spring-expression-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.0/spring-boot-starter-security-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-aop/6.1.8/spring-aop-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-config/6.3.0/spring-security-config-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-web/6.3.0/spring-security-web-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.0/spring-boot-starter-validation-3.3.0.jar:/Users/anishkadas/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.24/tomcat-embed-el-10.1.24.jar:/Users/anishkadas/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/Users/anishkadas/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/Users/anishkadas/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/Users/anishkadas/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-mail/3.3.0/spring-boot-starter-mail-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-context-support/6.1.8/spring-context-support-6.1.8.jar:/Users/anishkadas/.m2/repository/org/eclipse/angus/jakarta.mail/2.0.3/jakarta.mail-2.0.3.jar:/Users/anishkadas/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/Users/anishkadas/.m2/repository/org/eclipse/angus/angus-activation/2.0.2/angus-activation-2.0.2.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.3.0/spring-boot-starter-data-jpa-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.3.0/spring-boot-starter-aop-3.3.0.jar:/Users/anishkadas/.m2/repository/org/aspectj/aspectjweaver/1.9.22/aspectjweaver-1.9.22.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.0/spring-boot-starter-jdbc-3.3.0.jar:/Users/anishkadas/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-jdbc/6.1.8/spring-jdbc-6.1.8.jar:/Users/anishkadas/.m2/repository/org/hibernate/orm/hibernate-core/6.5.2.Final/hibernate-core-6.5.2.Final.jar:/Users/anishkadas/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/Users/anishkadas/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Users/anishkadas/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/Users/anishkadas/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/Users/anishkadas/.m2/repository/net/bytebuddy/byte-buddy/1.14.16/byte-buddy-1.14.16.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.5/jaxb-runtime-4.0.5.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar:/Users/anishkadas/.m2/repository/org/glassfish/jaxb/txw2/4.0.5/txw2-4.0.5.jar:/Users/anishkadas/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/Users/anishkadas/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Users/anishkadas/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/data/spring-data-jpa/3.3.0/spring-data-jpa-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/data/spring-data-commons/3.3.0/spring-data-commons-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-orm/6.1.8/spring-orm-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-tx/6.1.8/spring-tx-6.1.8.jar:/Users/anishkadas/.m2/repository/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-aspects/6.1.8/spring-aspects-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-websocket/3.3.0/spring-boot-starter-websocket-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-messaging/6.1.8/spring-messaging-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-websocket/6.1.8/spring-websocket-6.1.8.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-api/0.12.5/jjwt-api-0.12.5.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-impl/0.12.5/jjwt-impl-0.12.5.jar:/Users/anishkadas/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.12.5/jjwt-jackson-0.12.5.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar:/Users/anishkadas/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/Users/anishkadas/.m2/repository/org/projectlombok/lombok/1.18.40/lombok-1.18.40.jar:/Users/anishkadas/.m2/repository/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar:/Users/anishkadas/.m2/repository/com/google/zxing/core/3.5.3/core-3.5.3.jar:/Users/anishkadas/.m2/repository/com/google/zxing/javase/3.5.3/javase-3.5.3.jar:/Users/anishkadas/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar:/Users/anishkadas/.m2/repository/com/github/jai-imageio/jai-imageio-core/1.4.0/jai-imageio-core-1.4.0.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi-ooxml/5.2.5/poi-ooxml-5.2.5.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi/5.2.5/poi-5.2.5.jar:/Users/anishkadas/.m2/repository/commons-codec/commons-codec/1.16.1/commons-codec-1.16.1.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar:/Users/anishkadas/.m2/repository/com/zaxxer/SparseBitSet/1.3/SparseBitSet-1.3.jar:/Users/anishkadas/.m2/repository/org/apache/poi/poi-ooxml-lite/5.2.5/poi-ooxml-lite-5.2.5.jar:/Users/anishkadas/.m2/repository/org/apache/xmlbeans/xmlbeans/5.2.0/xmlbeans-5.2.0.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-compress/1.25.0/commons-compress-1.25.0.jar:/Users/anishkadas/.m2/repository/commons-io/commons-io/2.15.0/commons-io-2.15.0.jar:/Users/anishkadas/.m2/repository/com/github/virtuald/curvesapi/1.08/curvesapi-1.08.jar:/Users/anishkadas/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar:/Users/anishkadas/.m2/repository/com/github/librepdf/openpdf/1.3.30/openpdf-1.3.30.jar:/Users/anishkadas/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.5.0/springdoc-openapi-starter-webmvc-ui-2.5.0.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.5.0/springdoc-openapi-starter-webmvc-api-2.5.0.jar:/Users/anishkadas/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.5.0/springdoc-openapi-starter-common-2.5.0.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.21/swagger-core-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.21/swagger-annotations-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.21/swagger-models-jakarta-2.2.21.jar:/Users/anishkadas/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.1/jackson-dataformat-yaml-2.17.1.jar:/Users/anishkadas/.m2/repository/org/webjars/swagger-ui/5.13.0/swagger-ui-5.13.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-devtools/3.3.0/spring-boot-devtools-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot/3.3.0/spring-boot-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.0/spring-boot-autoconfigure-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.0/spring-boot-starter-test-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-test/3.3.0/spring-boot-test-3.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.0/spring-boot-test-autoconfigure-3.3.0.jar:/Users/anishkadas/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/Users/anishkadas/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/Users/anishkadas/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/Users/anishkadas/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/Users/anishkadas/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/Users/anishkadas/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/Users/anishkadas/.m2/repository/org/awaitility/awaitility/4.2.1/awaitility-4.2.1.jar:/Users/anishkadas/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/Users/anishkadas/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/anishkadas/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/Users/anishkadas/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/Users/anishkadas/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:/Users/anishkadas/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/Users/anishkadas/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.16/byte-buddy-agent-1.14.16.jar:/Users/anishkadas/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/anishkadas/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/Users/anishkadas/.m2/repository/org/skyscreamer/jsonassert/1.5.1/jsonassert-1.5.1.jar:/Users/anishkadas/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-core/6.1.8/spring-core-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-jcl/6.1.8/spring-jcl-6.1.8.jar:/Users/anishkadas/.m2/repository/org/springframework/spring-test/6.1.8/spring-test-6.1.8.jar:/Users/anishkadas/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-test/6.3.0/spring-security-test-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-core/6.3.0/spring-security-core-6.3.0.jar:/Users/anishkadas/.m2/repository/org/springframework/security/spring-security-crypto/6.3.0/spring-security-crypto-6.3.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/Users/anishkadas"/>
     <property name="user.language" value="en"/>
@@ -32,7 +32,7 @@
     <property name="FILE_LOG_CHARSET" value="UTF-8"/>
     <property name="java.awt.headless" value="true"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/surefire/surefirebooter-20260807192145803_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts/target/surefire/surefirebooter-20260823182210219_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.2"/>
     <property name="user.name" value="anishkadas"/>
@@ -51,7 +51,7 @@
     <property name="user.dir" value="/Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts"/>
     <property name="os.arch" value="aarch64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="2135"/>
+    <property name="PID" value="8304"/>
     <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/anishkadas/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
@@ -64,10 +64,10 @@
     <property name="java.class.version" value="69.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[plts] "/>
   </properties>
-  <testcase name="contextLoads" classname="com.tcs.plts.PltsApplicationTests" time="10.669">
+  <testcase name="contextLoads" classname="com.tcs.plts.PltsApplicationTests" time="10.705">
     <error message="Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)" type="java.lang.IllegalStateException"><![CDATA[java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
 	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
-	at jdk.proxy2/jdk.proxy2.$Proxy171.getHandler(Unknown Source)
+	at jdk.proxy2/jdk.proxy2.$Proxy176.getHandler(Unknown Source)
 	at org.mockito.internal.util.MockUtil.getMockHandlerOrNull(MockUtil.java:158)
 	at org.mockito.internal.util.MockUtil.isMock(MockUtil.java:147)
 	at org.mockito.internal.util.DefaultMockingDetails.isMock(DefaultMockingDetails.java:32)
@@ -81,7 +81,7 @@
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 	Suppressed: java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
 		at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
-		at jdk.proxy2/jdk.proxy2.$Proxy171.getHandler(Unknown Source)
+		at jdk.proxy2/jdk.proxy2.$Proxy176.getHandler(Unknown Source)
 		at org.mockito.internal.util.MockUtil.getMockHandlerOrNull(MockUtil.java:158)
 		at org.mockito.internal.util.MockUtil.isMock(MockUtil.java:147)
 		at org.mockito.internal.util.DefaultMockingDetails.isMock(DefaultMockingDetails.java:32)
@@ -139,9 +139,9 @@ OS version         : 26.5.2
 		... 19 more
 Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker]
 ]]></error>
-    <system-out><![CDATA[19:21:46.060 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.tcs.plts.PltsApplicationTests]: PltsApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-19:21:46.099 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.tcs.plts.PltsApplication for test class com.tcs.plts.PltsApplicationTests
-19:21:46.153 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
+    <system-out><![CDATA[18:22:10.842 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.tcs.plts.PltsApplicationTests]: PltsApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:22:10.883 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.tcs.plts.PltsApplication for test class com.tcs.plts.PltsApplicationTests
+18:22:10.942 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -151,23 +151,23 @@ Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal proble
 
  :: Spring Boot ::                (v3.3.0)
 
-2026-08-07T19:21:46.246+05:30  INFO 2135 --- [plts] [           main] com.tcs.plts.PltsApplicationTests        : Starting PltsApplicationTests using Java 25.0.2 with PID 2135 (started by anishkadas in /Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts)
-2026-08-07T19:21:46.247+05:30  INFO 2135 --- [plts] [           main] com.tcs.plts.PltsApplicationTests        : No active profile set, falling back to 1 default profile: "default"
-2026-08-07T19:21:46.247+05:30 DEBUG 2135 --- [plts] [           main] o.s.boot.SpringApplication               : Loading source class com.tcs.plts.PltsApplication
-2026-08-07T19:21:46.258+05:30 DEBUG 2135 --- [plts] [           main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@28fa700e
-2026-08-07T19:21:46.571+05:30  INFO 2135 --- [plts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-08-07T19:21:46.576+05:30 DEBUG 2135 --- [plts] [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.tcs.plts'. Automatic @Repository and @Entity scanning is enabled.
-2026-08-07T19:21:46.595+05:30  INFO 2135 --- [plts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 8 JPA repository interfaces.
-2026-08-07T19:21:46.800+05:30  INFO 2135 --- [plts] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-08-07T19:21:46.824+05:30  INFO 2135 --- [plts] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2026-08-07T19:21:46.836+05:30  INFO 2135 --- [plts] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-08-07T19:21:46.949+05:30  INFO 2135 --- [plts] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-08-07T19:21:46.958+05:30  INFO 2135 --- [plts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-08-07T19:21:47.017+05:30  INFO 2135 --- [plts] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:pltsdb user=SA
-2026-08-07T19:21:47.018+05:30  INFO 2135 --- [plts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-08-07T19:21:47.027+05:30  WARN 2135 --- [plts] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-08-07T19:21:47.383+05:30  INFO 2135 --- [plts] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-08-07T19:21:47.405+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:11.042+05:30  INFO 8304 --- [plts] [           main] com.tcs.plts.PltsApplicationTests        : Starting PltsApplicationTests using Java 25.0.2 with PID 8304 (started by anishkadas in /Users/anishkadas/Desktop/Desktop/Updated PLTS/backend/plts)
+2026-08-23T18:22:11.042+05:30  INFO 8304 --- [plts] [           main] com.tcs.plts.PltsApplicationTests        : No active profile set, falling back to 1 default profile: "default"
+2026-08-23T18:22:11.042+05:30 DEBUG 8304 --- [plts] [           main] o.s.boot.SpringApplication               : Loading source class com.tcs.plts.PltsApplication
+2026-08-23T18:22:11.053+05:30 DEBUG 8304 --- [plts] [           main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@46292372
+2026-08-23T18:22:11.464+05:30  INFO 8304 --- [plts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-23T18:22:11.475+05:30 DEBUG 8304 --- [plts] [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.tcs.plts'. Automatic @Repository and @Entity scanning is enabled.
+2026-08-23T18:22:11.506+05:30  INFO 8304 --- [plts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 12 JPA repository interfaces.
+2026-08-23T18:22:11.748+05:30  INFO 8304 --- [plts] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-23T18:22:11.773+05:30  INFO 8304 --- [plts] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-08-23T18:22:11.792+05:30  INFO 8304 --- [plts] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-08-23T18:22:11.898+05:30  INFO 8304 --- [plts] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-23T18:22:11.907+05:30  INFO 8304 --- [plts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-23T18:22:11.967+05:30  INFO 8304 --- [plts] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:pltsdb user=SA
+2026-08-23T18:22:11.968+05:30  INFO 8304 --- [plts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-23T18:22:11.978+05:30  WARN 8304 --- [plts] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-23T18:22:12.399+05:30  INFO 8304 --- [plts] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-23T18:22:12.415+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     create table audit_logs (
         id bigint generated by default as identity,
         action varchar(255) not null,
@@ -178,7 +178,37 @@ Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal proble
         timestamp timestamp(6),
         primary key (id)
     )
-2026-08-07T19:21:47.408+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.418+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    create table defect_cases (
+        id bigint generated by default as identity,
+        batch_number varchar(255),
+        contributing_factors varchar(2000),
+        corrective_actions varchar(2000),
+        created_at timestamp(6),
+        defect_case_id varchar(255) not null,
+        defect_category enum ('CONTAMINATION','CUSTOMER_COMPLAINT','EXPIRED_PRODUCT','LABELING_ERROR','MANUFACTURING_DEFECT','PACKAGING_DAMAGE','QUALITY_FAILURE','REGULATORY_ISSUE','TRANSPORT_DAMAGE','UNKNOWN') not null,
+        description varchar(2000) not null,
+        evidence_documents varchar(2000),
+        evidence_photos varchar(2000),
+        investigation_notes varchar(5000),
+        location varchar(255),
+        product_qr_code varchar(255) not null,
+        product_serial_number varchar(255) not null,
+        quantity_affected integer not null,
+        recall_required boolean not null,
+        reported_by_id varchar(255) not null,
+        reported_by_name varchar(255) not null,
+        reported_by_role enum ('MANUFACTURER','ORGANIZATION','PACKAGING_TRANSPORT','QA','RETAILER') not null,
+        root_cause varchar(2000),
+        severity enum ('CRITICAL','HIGH','LOW','MEDIUM') not null,
+        similar_historical_cases varchar(2000),
+        status enum ('CLOSED','DEFECT_REPORTED','RECALL_APPROVED','RECALL_COMPLETED','RECALL_IN_PROGRESS','ROOT_CAUSE_IDENTIFIED','UNDER_INVESTIGATION') not null,
+        updated_at timestamp(6),
+        order_id bigint,
+        organization_id bigint not null,
+        primary key (id)
+    )
+2026-08-23T18:22:12.419+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     create table lifecycle_stages (
         id bigint generated by default as identity,
         attachment_url varchar(255),
@@ -192,7 +222,7 @@ Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal proble
         order_id bigint not null,
         primary key (id)
     )
-2026-08-07T19:21:47.409+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.420+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     create table notifications (
         id bigint generated by default as identity,
         created_at timestamp(6),
@@ -200,11 +230,11 @@ Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal proble
         message varchar(1000) not null,
         order_id varchar(255),
         title varchar(255) not null,
-        type enum ('LIFECYCLE_COMPLETED','ORDER_ASSIGNED','ORDER_UPDATED','OTP','STAGE_COMPLETED','STAKEHOLDER_ADDED','SYSTEM') not null,
+        type enum ('LIFECYCLE_COMPLETED','ORDER_ASSIGNED','ORDER_CANCELLED','ORDER_UPDATED','OTP','STAGE_COMPLETED','STAKEHOLDER_ADDED','SYSTEM') not null,
         user_id bigint not null,
         primary key (id)
     )
-2026-08-07T19:21:47.410+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.420+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     create table orders (
         id bigint generated by default as identity,
         completion_document_url varchar(255),
@@ -213,16 +243,24 @@ Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal proble
         description varchar(2000),
         estimated_delivery date,
         expected_delivery_date date,
+        is_premapped boolean not null,
+        manufacturing_batch_id varchar(255),
         order_number varchar(255) not null,
+        packaging_batch_id varchar(255),
         priority enum ('HIGH','LOW','MEDIUM','URGENT') not null,
         product_name varchar(255) not null,
+        product_qr_code varchar(255) not null,
+        product_serial_number varchar(255),
+        qa_batch_id varchar(255),
         qa_passed boolean,
         qa_remarks varchar(255),
         qa_report_url varchar(255),
         quantity integer not null,
+        raw_material_batch_id varchar(255),
         remarks varchar(1000),
         status enum ('COMPLETED','CREATED','DELIVERED','MANUFACTURER_ASSIGNED','MANUFACTURING','MANUFACTURING_COMPLETED','PACKAGING_ASSIGNED','PACKAGING_COMPLETED','PACKAGING_IN_PROGRESS','QA_ASSIGNED','QA_COMPLETED','QA_IN_PROGRESS','REJECTED','RETAILER_ASSIGNED','TRANSPORT_COMPLETED') not null,
         tracking_number varchar(255),
+        transport_batch_id varchar(255),
         updated_at timestamp(6),
         vehicle_details varchar(255),
         version bigint,
@@ -233,7 +271,7 @@ Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal proble
         retailer_id bigint,
         primary key (id)
     )
-2026-08-07T19:21:47.410+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.421+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     create table organizations (
         id bigint generated by default as identity,
         address varchar(255),
@@ -246,7 +284,7 @@ Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal proble
         user_id bigint not null,
         primary key (id)
     )
-2026-08-07T19:21:47.411+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.421+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     create table otp_tokens (
         id bigint generated by default as identity,
         code varchar(255) not null,
@@ -257,7 +295,79 @@ Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal proble
         used boolean not null,
         primary key (id)
     )
-2026-08-07T19:21:47.411+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.422+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    create table product_batches (
+        id bigint generated by default as identity,
+        batch_id varchar(255) not null,
+        batch_type varchar(255) not null,
+        certificates varchar(2000),
+        documents varchar(2000),
+        machine_id varchar(255),
+        next_stage varchar(2000),
+        operator varchar(255),
+        parent_batch_id varchar(255),
+        photos varchar(2000),
+        previous_stage varchar(2000),
+        production_line varchar(255),
+        quantity integer not null,
+        raw_material_lot varchar(255),
+        remarks varchar(2000),
+        shift varchar(255),
+        stakeholder_name varchar(255) not null,
+        stakeholder_role enum ('MANUFACTURER','ORGANIZATION','PACKAGING_TRANSPORT','QA','RETAILER'),
+        timestamp timestamp(6),
+        transport_route varchar(255),
+        order_id bigint,
+        organization_id bigint,
+        stakeholder_id bigint,
+        primary key (id)
+    )
+2026-08-23T18:22:12.423+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    create table recall_actions (
+        id bigint generated by default as identity,
+        completed_at timestamp(6),
+        created_at timestamp(6),
+        evidence_documents varchar(2000),
+        evidence_photos varchar(2000),
+        performed_by varchar(255),
+        quantity_disposed integer not null,
+        quantity_quarantined integer not null,
+        quantity_returned integer not null,
+        quantity_verified integer not null,
+        remarks varchar(2000),
+        stakeholder_id_string varchar(255) not null,
+        stakeholder_name varchar(255) not null,
+        status enum ('DISPOSED','PENDING','QUARANTINED','RETURNED','VERIFIED') not null,
+        updated_at timestamp(6),
+        order_id bigint,
+        recall_case_id bigint not null,
+        stakeholder_id bigint,
+        primary key (id)
+    )
+2026-08-23T18:22:12.423+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    create table recall_cases (
+        id bigint generated by default as identity,
+        affected_batches varchar(2000),
+        affected_product_count integer not null,
+        affected_retailers varchar(2000),
+        affected_transport_partners varchar(2000),
+        approved_by varchar(255) not null,
+        approved_by_name varchar(255) not null,
+        completed_at timestamp(6),
+        created_at timestamp(6),
+        estimated_completion_date timestamp(6),
+        estimated_cost bigint,
+        initiated_by varchar(255) not null,
+        initiated_by_name varchar(255) not null,
+        priority varchar(2000),
+        recall_id varchar(255) not null,
+        recall_reason varchar(5000),
+        recall_scope enum ('FULL_RECALL','MANUFACTURING_BATCH','PACKAGING_BATCH','PRODUCT_LINE','QA_BATCH','SINGLE_PRODUCT','TRANSPORT_BATCH') not null,
+        status enum ('APPROVED','COLLECTION_IN_PROGRESS','COMPLETED','DRAFT','NOTIFICATIONS_SENT','VERIFICATION_IN_PROGRESS') not null,
+        defect_case_id bigint not null,
+        primary key (id)
+    )
+2026-08-23T18:22:12.424+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     create table stakeholders (
         id bigint generated by default as identity,
         active boolean not null,
@@ -274,7 +384,7 @@ Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal proble
         user_id bigint,
         primary key (id)
     )
-2026-08-07T19:21:47.412+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.424+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     create table users (
         id bigint generated by default as identity,
         active boolean not null,
@@ -287,109 +397,218 @@ Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal proble
         verified boolean not null,
         primary key (id)
     )
-2026-08-07T19:21:47.413+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.425+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists defect_cases 
+       drop constraint if exists UKiydjxfn18h9n6u59wndi9pig5
+2026-08-23T18:22:12.425+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists defect_cases 
+       add constraint UKiydjxfn18h9n6u59wndi9pig5 unique (defect_case_id)
+2026-08-23T18:22:12.426+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists orders 
        drop constraint if exists UKnthkiu7pgmnqnu86i2jyoe2v7
-2026-08-07T19:21:47.413+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.426+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists orders 
        add constraint UKnthkiu7pgmnqnu86i2jyoe2v7 unique (order_number)
-2026-08-07T19:21:47.413+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.426+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists organizations 
        drop constraint if exists UKpe8sgvd49hsasoq2kqav6nhkv
-2026-08-07T19:21:47.413+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.426+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists organizations 
        add constraint UKpe8sgvd49hsasoq2kqav6nhkv unique (email)
-2026-08-07T19:21:47.414+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.427+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists organizations 
        drop constraint if exists UKsx0dx8uvgb81d6ryhi7vi36dt
-2026-08-07T19:21:47.414+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.427+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists organizations 
        add constraint UKsx0dx8uvgb81d6ryhi7vi36dt unique (user_id)
-2026-08-07T19:21:47.414+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.427+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists product_batches 
+       drop constraint if exists UK6kg2uwods8f0eufwlkhhbsuyl
+2026-08-23T18:22:12.427+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists product_batches 
+       add constraint UK6kg2uwods8f0eufwlkhhbsuyl unique (batch_id)
+2026-08-23T18:22:12.427+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists recall_cases 
+       drop constraint if exists UKiw3ibtaafp7teddtsqus5bpkv
+2026-08-23T18:22:12.428+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists recall_cases 
+       add constraint UKiw3ibtaafp7teddtsqus5bpkv unique (recall_id)
+2026-08-23T18:22:12.428+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists stakeholders 
        drop constraint if exists UKpk003j68a4n5ye7xi17logkt8
-2026-08-07T19:21:47.414+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.428+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists stakeholders 
        add constraint UKpk003j68a4n5ye7xi17logkt8 unique (generated_user_id)
-2026-08-07T19:21:47.414+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.428+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists stakeholders 
        drop constraint if exists UKsnecs4qyq2bfpapvyvporo7b7
-2026-08-07T19:21:47.414+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.428+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists stakeholders 
        add constraint UKsnecs4qyq2bfpapvyvporo7b7 unique (user_id)
-2026-08-07T19:21:47.415+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.428+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists users 
        drop constraint if exists UK6dotkott2kjsp8vw4d0m25fb7
-2026-08-07T19:21:47.415+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.429+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists users 
        add constraint UK6dotkott2kjsp8vw4d0m25fb7 unique (email)
-2026-08-07T19:21:47.415+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.429+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists users 
        drop constraint if exists UKduxfp1u08sc1lw0d3wcci7o1w
-2026-08-07T19:21:47.415+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.429+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists users 
        add constraint UKduxfp1u08sc1lw0d3wcci7o1w unique (generated_user_id)
-2026-08-07T19:21:47.416+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.429+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists defect_cases 
+       add constraint FKmii91tt78pkk90w390egjwa9l 
+       foreign key (order_id) 
+       references orders
+2026-08-23T18:22:12.431+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists defect_cases 
+       add constraint FKg1gf29dyh0bu449f82iibj3t7 
+       foreign key (organization_id) 
+       references organizations
+2026-08-23T18:22:12.431+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists lifecycle_stages 
        add constraint FKqnvpp6nmcpfkja60npgxplbj1 
        foreign key (order_id) 
        references orders
-2026-08-07T19:21:47.418+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.432+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists notifications 
        add constraint FK9y21adhxn0ayjhfocscqox7bh 
        foreign key (user_id) 
        references users
-2026-08-07T19:21:47.418+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.432+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists orders 
        add constraint FKaqy9e11nnqrrtuted1mm6wr2l 
        foreign key (manufacturer_id) 
        references stakeholders
-2026-08-07T19:21:47.419+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.433+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists orders 
        add constraint FKmnqry320pwe9sb3kvil9r28f9 
        foreign key (organization_id) 
        references organizations
-2026-08-07T19:21:47.419+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.433+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists orders 
        add constraint FK9p35gkyfg5dcnbksutthw5ihd 
        foreign key (packaging_transport_id) 
        references stakeholders
-2026-08-07T19:21:47.420+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.434+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists orders 
        add constraint FKn9sl866qg4xhwpgwi1cvckj14 
        foreign key (qa_id) 
        references stakeholders
-2026-08-07T19:21:47.420+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.434+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists orders 
        add constraint FKobafi7dl5gv7uqx278wkv7mdg 
        foreign key (retailer_id) 
        references stakeholders
-2026-08-07T19:21:47.421+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.435+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists organizations 
        add constraint FKi6hsrnbrm13v8smtg37nogkx5 
        foreign key (user_id) 
        references users
-2026-08-07T19:21:47.421+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.435+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists product_batches 
+       add constraint FK5ko9k7ksq5uwe19ogp2mdpfnl 
+       foreign key (order_id) 
+       references orders
+2026-08-23T18:22:12.436+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists product_batches 
+       add constraint FKobnk7ypdsiu22op4dga1cw3f7 
+       foreign key (organization_id) 
+       references organizations
+2026-08-23T18:22:12.436+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists product_batches 
+       add constraint FKditvi2kj3js8109t6fekenhod 
+       foreign key (stakeholder_id) 
+       references stakeholders
+2026-08-23T18:22:12.437+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists recall_actions 
+       add constraint FKqbr5egww8310ev6496ub4vlq1 
+       foreign key (order_id) 
+       references orders
+2026-08-23T18:22:12.437+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists recall_actions 
+       add constraint FKe4inm58yiy0wyfhfyoch8enyr 
+       foreign key (recall_case_id) 
+       references recall_cases
+2026-08-23T18:22:12.438+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists recall_actions 
+       add constraint FKcdgixul5wcrn7b3ymrcuddfke 
+       foreign key (stakeholder_id) 
+       references stakeholders
+2026-08-23T18:22:12.438+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
+    alter table if exists recall_cases 
+       add constraint FKb10w32u0tuwsrplo2mkes9eii 
+       foreign key (defect_case_id) 
+       references defect_cases
+2026-08-23T18:22:12.439+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists stakeholders 
        add constraint FKd8es8d1ty4koar15m0qtrusql 
        foreign key (organization_id) 
        references organizations
-2026-08-07T19:21:47.422+05:30 DEBUG 2135 --- [plts] [           main] org.hibernate.SQL                        : 
+2026-08-23T18:22:12.439+05:30 DEBUG 8304 --- [plts] [           main] org.hibernate.SQL                        : 
     alter table if exists stakeholders 
        add constraint FKrejfnrbqvyoaay923k2omp7lp 
        foreign key (user_id) 
        references users
-2026-08-07T19:21:47.423+05:30  INFO 2135 --- [plts] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-08-07T19:21:47.556+05:30  INFO 2135 --- [plts] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-08-07T19:21:47.776+05:30  INFO 2135 --- [plts] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
-2026-08-07T19:21:47.854+05:30  WARN 2135 --- [plts] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-08-07T19:21:47.909+05:30 DEBUG 2135 --- [plts] [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 37 mappings in 'requestMappingHandlerMapping'
-2026-08-07T19:21:47.962+05:30 DEBUG 2135 --- [plts] [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2026-08-07T19:21:47.975+05:30  INFO 2135 --- [plts] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6b06da60, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1be62793, org.springframework.security.web.context.SecurityContextHolderFilter@5e05f3eb, org.springframework.security.web.header.HeaderWriterFilter@6816b0cb, org.springframework.web.filter.CorsFilter@9da8b97, org.springframework.security.web.authentication.logout.LogoutFilter@3778cd05, com.tcs.plts.security.JwtAuthFilter@48dc06a9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@286e2b71, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@377d66f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@56527ff2, org.springframework.security.web.session.SessionManagementFilter@71adea8d, org.springframework.security.web.access.ExceptionTranslationFilter@75acb326, org.springframework.security.web.access.intercept.AuthorizationFilter@6f53e863]
-2026-08-07T19:21:48.046+05:30 DEBUG 2135 --- [plts] [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2026-08-07T19:21:48.058+05:30 DEBUG 2135 --- [plts] [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2026-08-07T19:21:48.111+05:30  INFO 2135 --- [plts] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:pltsdb'
-2026-08-07T19:21:48.149+05:30 DEBUG 2135 --- [plts] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+2026-08-23T18:22:12.440+05:30  INFO 8304 --- [plts] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-23T18:22:12.573+05:30  INFO 8304 --- [plts] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-23T18:22:12.798+05:30  INFO 8304 --- [plts] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-08-23T18:22:12.988+05:30  WARN 8304 --- [plts] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-23T18:22:13.026+05:30 DEBUG 8304 --- [plts] [           main] o.s.w.s.s.s.WebSocketHandlerMapping      : Patterns [/ws/**] in 'stompWebSocketHandlerMapping'
+2026-08-23T18:22:13.061+05:30 DEBUG 8304 --- [plts] [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2026-08-23T18:22:13.092+05:30 DEBUG 8304 --- [plts] [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2026-08-23T18:22:13.111+05:30  INFO 8304 --- [plts] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1a5d08c5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a235a93, org.springframework.security.web.context.SecurityContextHolderFilter@17b65876, org.springframework.security.web.header.HeaderWriterFilter@35798cd0, org.springframework.web.filter.CorsFilter@579847d7, org.springframework.security.web.authentication.logout.LogoutFilter@6822fdd, com.tcs.plts.security.JwtAuthFilter@1e8c9083, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c7dbf1f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1581c6fe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@156b3428, org.springframework.security.web.session.SessionManagementFilter@49bf6f8c, org.springframework.security.web.access.ExceptionTranslationFilter@4d6f8691, org.springframework.security.web.access.intercept.AuthorizationFilter@10260f02]
+2026-08-23T18:22:13.136+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.t.p.c.AnalyticsController:
+	
+2026-08-23T18:22:13.136+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.t.p.c.AuthController:
+	
+2026-08-23T18:22:13.136+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.t.p.c.DefectCaseController:
+	
+2026-08-23T18:22:13.136+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.t.p.c.NotificationController:
+	
+2026-08-23T18:22:13.136+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.t.p.c.OrderController:
+	
+2026-08-23T18:22:13.136+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.t.p.c.PublicTraceabilityController:
+	
+2026-08-23T18:22:13.136+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.t.p.c.RecallCaseController:
+	
+2026-08-23T18:22:13.136+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	c.t.p.c.StakeholderController:
+	
+2026-08-23T18:22:13.137+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	o.s.b.a.w.s.e.BasicErrorController:
+	
+2026-08-23T18:22:13.137+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	o.s.w.a.OpenApiWebMvcResource:
+	
+2026-08-23T18:22:13.137+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	o.s.w.u.SwaggerWelcomeWebMvc:
+	
+2026-08-23T18:22:13.137+05:30 DEBUG 8304 --- [plts] [           main] .WebSocketAnnotationMethodMessageHandler : 
+	o.s.w.u.SwaggerConfigResource:
+	
+2026-08-23T18:22:13.194+05:30 DEBUG 8304 --- [plts] [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-08-23T18:22:13.213+05:30 DEBUG 8304 --- [plts] [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-08-23T18:22:13.259+05:30  INFO 8304 --- [plts] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:pltsdb'
+2026-08-23T18:22:13.284+05:30 DEBUG 8304 --- [plts] [           main] org.springframework.web.SimpLogging      : clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2026-08-23T18:22:13.284+05:30 DEBUG 8304 --- [plts] [           main] org.springframework.web.SimpLogging      : clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/app/]]
+2026-08-23T18:22:13.284+05:30  INFO 8304 --- [plts] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-08-23T18:22:13.284+05:30 DEBUG 8304 --- [plts] [           main] org.springframework.web.SimpLogging      : clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@5f2383a0]
+2026-08-23T18:22:13.284+05:30 DEBUG 8304 --- [plts] [           main] org.springframework.web.SimpLogging      : brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@5f2383a0]
+2026-08-23T18:22:13.284+05:30  INFO 8304 --- [plts] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@5f2383a0]]
+2026-08-23T18:22:13.284+05:30  INFO 8304 --- [plts] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-08-23T18:22:13.284+05:30 DEBUG 8304 --- [plts] [           main] org.springframework.web.SimpLogging      : clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2026-08-23T18:22:13.284+05:30 DEBUG 8304 --- [plts] [           main] org.springframework.web.SimpLogging      : brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2026-08-23T18:22:13.289+05:30 DEBUG 8304 --- [plts] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 
 ============================
@@ -866,12 +1085,6 @@ Positive matches:
    TaskExecutorConfigurations.TaskExecutorBuilderConfiguration#taskExecutorBuilder matched:
       - @ConditionalOnMissingBean (types: org.springframework.boot.task.TaskExecutorBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
-   TaskExecutorConfigurations.TaskExecutorConfiguration matched:
-      - @ConditionalOnMissingBean (types: java.util.concurrent.Executor; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-   TaskExecutorConfigurations.TaskExecutorConfiguration#applicationTaskExecutor matched:
-      - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
-
    TaskExecutorConfigurations.ThreadPoolTaskExecutorBuilderConfiguration#threadPoolTaskExecutorBuilder matched:
       - @ConditionalOnMissingBean (types: org.springframework.boot.task.TaskExecutorBuilder,org.springframework.boot.task.ThreadPoolTaskExecutorBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
@@ -945,6 +1158,14 @@ Positive matches:
 
    WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#viewResolver matched:
       - @ConditionalOnBean (types: org.springframework.web.servlet.ViewResolver; SearchStrategy: all) found beans 'defaultViewResolver', 'beanNameViewResolver', 'mvcViewResolver'; @ConditionalOnMissingBean (names: viewResolver types: org.springframework.web.servlet.view.ContentNegotiatingViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebSocketMessagingAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+
+   WebSocketMessagingAutoConfiguration.WebSocketMessageConverterConfiguration matched:
+      - @ConditionalOnClass found required classes 'com.fasterxml.jackson.databind.ObjectMapper', 'org.springframework.messaging.simp.config.AbstractMessageBrokerConfiguration' (OnClassCondition)
+      - @ConditionalOnBean (types: org.springframework.web.socket.config.annotation.DelegatingWebSocketMessageBrokerConfiguration,com.fasterxml.jackson.databind.ObjectMapper; SearchStrategy: all) found beans 'jacksonObjectMapper', 'org.springframework.web.socket.config.annotation.DelegatingWebSocketMessageBrokerConfiguration' (OnBeanCondition)
 
    WebSocketServletAutoConfiguration matched:
       - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'jakarta.websocket.server.ServerContainer' (OnClassCondition)
@@ -1677,9 +1898,9 @@ Negative matches:
       Did not match:
          - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder; SearchStrategy: all) found beans of type 'org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder' simpleAsyncTaskExecutorBuilder (OnBeanCondition)
 
-   TaskExecutorConfigurations.TaskExecutorConfiguration#applicationTaskExecutorVirtualThreads:
+   TaskExecutorConfigurations.TaskExecutorConfiguration:
       Did not match:
-         - @ConditionalOnThreading did not find VIRTUAL (OnThreadingCondition)
+         - @ConditionalOnMissingBean (types: java.util.concurrent.Executor; SearchStrategy: all) found beans of type 'java.util.concurrent.Executor' clientInboundChannelExecutor, clientOutboundChannelExecutor, brokerChannelExecutor (OnBeanCondition)
 
    TaskSchedulingAutoConfiguration#scheduledBeanLazyInitializationExcludeFilter:
       Did not match:
@@ -1752,10 +1973,6 @@ Negative matches:
       Did not match:
          - @ConditionalOnClass did not find required class 'reactor.core.publisher.Mono' (OnClassCondition)
 
-   WebSocketMessagingAutoConfiguration:
-      Did not match:
-         - @ConditionalOnClass did not find required class 'org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer' (OnClassCondition)
-
    WebSocketReactiveAutoConfiguration:
       Did not match:
          - @ConditionalOnWebApplication did not find reactive web application classes (OnWebApplicationCondition)
@@ -1800,15 +2017,15 @@ Unconditional classes:
 
 
 
-2026-08-07T19:21:48.154+05:30  INFO 2135 --- [plts] [           main] com.tcs.plts.PltsApplicationTests        : Started PltsApplicationTests in 2.004 seconds (process running for 2.315)
-2026-08-07T19:21:48.155+05:30 DEBUG 2135 --- [plts] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
-2026-08-07T19:21:48.155+05:30 DEBUG 2135 --- [plts] [           main] o.s.boot.devtools.restart.Restarter      : Creating new Restarter for thread Thread[#3,main,5,main]
-2026-08-07T19:21:48.155+05:30 DEBUG 2135 --- [plts] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
-2026-08-07T19:21:58.820+05:30  WARN 2135 --- [plts] [           main] o.s.test.context.TestContextManager      : Caught exception while invoking 'beforeTestMethod' callback on TestExecutionListener [org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener] for test method [void com.tcs.plts.PltsApplicationTests.contextLoads()] and test instance [com.tcs.plts.PltsApplicationTests@19a920d1]
+2026-08-23T18:22:13.291+05:30  INFO 8304 --- [plts] [           main] com.tcs.plts.PltsApplicationTests        : Started PltsApplicationTests in 2.352 seconds (process running for 2.693)
+2026-08-23T18:22:13.291+05:30 DEBUG 8304 --- [plts] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2026-08-23T18:22:13.292+05:30 DEBUG 8304 --- [plts] [           main] o.s.boot.devtools.restart.Restarter      : Creating new Restarter for thread Thread[#3,main,5,main]
+2026-08-23T18:22:13.292+05:30 DEBUG 8304 --- [plts] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2026-08-23T18:22:23.993+05:30  WARN 8304 --- [plts] [           main] o.s.test.context.TestContextManager      : Caught exception while invoking 'beforeTestMethod' callback on TestExecutionListener [org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener] for test method [void com.tcs.plts.PltsApplicationTests.contextLoads()] and test instance [com.tcs.plts.PltsApplicationTests@aab2419]
 
 java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
 	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85) ~[mockito-core-5.11.0.jar:na]
-	at jdk.proxy2/jdk.proxy2.$Proxy171.getHandler(Unknown Source) ~[na:na]
+	at jdk.proxy2/jdk.proxy2.$Proxy176.getHandler(Unknown Source) ~[na:na]
 	at org.mockito.internal.util.MockUtil.getMockHandlerOrNull(MockUtil.java:158) ~[mockito-core-5.11.0.jar:na]
 	at org.mockito.internal.util.MockUtil.isMock(MockUtil.java:147) ~[mockito-core-5.11.0.jar:na]
 	at org.mockito.internal.util.DefaultMockingDetails.isMock(DefaultMockingDetails.java:32) ~[mockito-core-5.11.0.jar:na]
@@ -1916,11 +2133,11 @@ Caused by: java.lang.IllegalStateException: Could not self-attach to current VM 
 	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:133) ~[mockito-core-5.11.0.jar:na]
 	... 73 common frames omitted
 
-2026-08-07T19:21:58.825+05:30  WARN 2135 --- [plts] [           main] o.s.test.context.TestContextManager      : Caught exception while invoking 'afterTestMethod' callback on TestExecutionListener [org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener] for test method [void com.tcs.plts.PltsApplicationTests.contextLoads()] and test instance [com.tcs.plts.PltsApplicationTests@19a920d1]
+2026-08-23T18:22:23.996+05:30  WARN 8304 --- [plts] [           main] o.s.test.context.TestContextManager      : Caught exception while invoking 'afterTestMethod' callback on TestExecutionListener [org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener] for test method [void com.tcs.plts.PltsApplicationTests.contextLoads()] and test instance [com.tcs.plts.PltsApplicationTests@aab2419]
 
 java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
 	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85) ~[mockito-core-5.11.0.jar:na]
-	at jdk.proxy2/jdk.proxy2.$Proxy171.getHandler(Unknown Source) ~[na:na]
+	at jdk.proxy2/jdk.proxy2.$Proxy176.getHandler(Unknown Source) ~[na:na]
 	at org.mockito.internal.util.MockUtil.getMockHandlerOrNull(MockUtil.java:158) ~[mockito-core-5.11.0.jar:na]
 	at org.mockito.internal.util.MockUtil.isMock(MockUtil.java:147) ~[mockito-core-5.11.0.jar:na]
 	at org.mockito.internal.util.DefaultMockingDetails.isMock(DefaultMockingDetails.java:32) ~[mockito-core-5.11.0.jar:na]

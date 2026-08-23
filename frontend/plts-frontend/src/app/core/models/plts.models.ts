@@ -125,6 +125,14 @@ export interface DashboardAnalytics {
   pendingOrders: number;
   unreadNotifications: number;
   ordersPerStage: Record<string, number>;
+  avgCycleTime?: string;
+  cycleTimeChange?: string;
+  onTimeDelivery?: string;
+  onTimeDeliveryChange?: string;
+  qualityRate?: string;
+  qualityRateChange?: string;
+  defectRate?: string;
+  defectRateChange?: string;
 }
 
 export interface PublicTraceability {

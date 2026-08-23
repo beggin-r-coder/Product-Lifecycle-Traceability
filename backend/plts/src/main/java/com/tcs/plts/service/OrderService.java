@@ -65,6 +65,7 @@ public class OrderService {
             if (manufacturer.getRole() != Role.MANUFACTURER) {
                 throw new IllegalArgumentException("Selected stakeholder is not a Manufacturer");
             }
+            validatePremappedStakeholder(manufacturer, org);
             order.setManufacturer(manufacturer);
         }
 
@@ -74,6 +75,7 @@ public class OrderService {
             if (qa.getRole() != Role.QA) {
                 throw new IllegalArgumentException("Selected stakeholder is not QA");
             }
+            validatePremappedStakeholder(qa, org);
             order.setQa(qa);
         }
 
@@ -83,6 +85,7 @@ public class OrderService {
             if (pt.getRole() != Role.PACKAGING_TRANSPORT) {
                 throw new IllegalArgumentException("Selected stakeholder is not Packaging & Transport");
             }
+            validatePremappedStakeholder(pt, org);
             order.setPackagingTransport(pt);
         }
 
@@ -92,7 +95,15 @@ public class OrderService {
             if (retailer.getRole() != Role.RETAILER) {
                 throw new IllegalArgumentException("Selected stakeholder is not a Retailer");
             }
+            validatePremappedStakeholder(retailer, org);
             order.setRetailer(retailer);
+        }
+
+        // A preselected manufacturer is the first executable hand-off. Move the
+        // order into its assignment state immediately so it is visible in the
+        // manufacturer's work queue instead of remaining stuck in CREATED.
+        if (order.getManufacturer() != null) {
+            order.setStatus(OrderStatus.MANUFACTURER_ASSIGNED);
         }
 
         orderRepository.save(order);
@@ -102,6 +113,13 @@ public class OrderService {
                 "Order created in system with priority " + request.getPriority() + 
                 (request.getManufacturerId() != null ? ". Premapped stakeholders assigned." : ""), 
                 null, org.getUser().getEmail());
+
+        if (order.getManufacturer() != null) {
+            addLifecycleStage(order, OrderStatus.MANUFACTURER_ASSIGNED,
+                    "Auto-assigned to Manufacturer (Premap)",
+                    order.getManufacturer().getCompanyName(), Role.MANUFACTURER,
+                    "Automatically assigned from premap configuration", null, "System");
+        }
 
         // Audit Log
         auditLogRepository.save(AuditLog.builder()
@@ -534,6 +552,15 @@ public class OrderService {
 
         lifecycleStageRepository.save(stage);
         order.getLifecycleStages().add(stage);
+    }
+
+    private void validatePremappedStakeholder(Stakeholder stakeholder, Organization organization) {
+        if (!stakeholder.isActive()) {
+            throw new IllegalArgumentException("Selected stakeholder is inactive");
+        }
+        if (!stakeholder.getOrganization().getId().equals(organization.getId())) {
+            throw new IllegalArgumentException("Selected stakeholder does not belong to this organization");
+        }
     }
 
     private String generateOrderNumber() {

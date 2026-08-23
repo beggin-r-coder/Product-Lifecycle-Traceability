@@ -17,7 +17,7 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
           <h1
             class="text-2xl md:text-3xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight"
           >
-            {{ portalTitle }} Tasks
+            {{ portalTitle }} Dashboard
           </h1>
           <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Logged in as
@@ -30,60 +30,118 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
 
         <button
           (click)="loadTasks()"
-          class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-xs font-bold rounded-xl hover:bg-slate-200 flex items-center space-x-2 self-start sm:self-auto"
+          class="px-4 py-2.5 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-xs font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center space-x-2 self-start sm:self-auto transition-all duration-300"
         >
           <span class="material-symbols-outlined text-base">refresh</span>
           <span>Refresh Tasks</span>
         </button>
       </div>
 
+      <!-- Stats Overview -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Tasks</span>
+            <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center">
+              <span class="material-symbols-outlined text-xl">assignment</span>
+            </div>
+          </div>
+          <p class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{{ tasks().length }}</p>
+          <p class="text-[11px] text-slate-500 mt-1">All assigned tasks</p>
+        </div>
+
+        <div class="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pending</span>
+            <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+              <span class="material-symbols-outlined text-xl">pending</span>
+            </div>
+          </div>
+          <p class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{{ tasks().filter(t => t.status.includes('ASSIGNED')).length }}</p>
+          <p class="text-[11px] text-slate-500 mt-1">Awaiting action</p>
+        </div>
+
+        <div class="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">In Progress</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+              <span class="material-symbols-outlined text-xl">hourglass_empty</span>
+            </div>
+          </div>
+          <p class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{{ tasks().filter(t => t.status.includes('IN_PROGRESS')).length }}</p>
+          <p class="text-[11px] text-slate-500 mt-1">Currently working</p>
+        </div>
+
+        <div class="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Completed</span>
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+              <span class="material-symbols-outlined text-xl">check_circle</span>
+            </div>
+          </div>
+          <p class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{{ tasks().filter(t => t.status === 'COMPLETED').length }}</p>
+          <p class="text-[11px] text-slate-500 mt-1">Successfully completed</p>
+        </div>
+      </div>
+
       <!-- Task Cards List -->
       <div class="space-y-4">
         @if (tasks().length === 0) {
-          <div class="glass-card p-12 text-center text-slate-400">
-            <span class="material-symbols-outlined text-4xl mb-2">task</span>
-            <p class="text-sm font-semibold">No active tasks assigned to your company right now.</p>
+          <div class="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-12 text-center">
+            <div class="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center mx-auto">
+              <span class="material-symbols-outlined text-3xl text-slate-400">assignment</span>
+            </div>
+            <p class="mt-4 text-sm font-semibold text-slate-600 dark:text-slate-400">No active tasks assigned</p>
+            <p class="text-xs text-slate-500 dark:text-slate-500 mt-1">Check back later for new assignments</p>
           </div>
         }
 
         @for (t of tasks(); track t) {
-          <div class="glass-card rounded-3xl p-6 space-y-4">
+          <div class="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-6 space-y-4 shadow-lg hover:shadow-xl transition-all duration-300">
             <div
-              class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-4"
+              class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-700 pb-4"
             >
-              <div>
-                <div class="flex items-center space-x-3">
-                  <span
-                    class="text-xs font-mono font-extrabold px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 dark:bg-brand-950 dark:text-brand-300 border border-brand-200 dark:border-brand-800"
-                  >
-                    {{ t.orderNumber }}
-                  </span>
-                  <h3 class="text-lg font-bold font-heading text-slate-900 dark:text-white">
+              <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-xl">inventory</span>
+                </div>
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span
+                      class="text-xs font-mono font-extrabold px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 dark:bg-brand-950 dark:text-brand-300 border border-brand-200 dark:border-brand-800"
+                    >
+                      {{ t.orderNumber }}
+                    </span>
+                    <span [class]="getStatusBadgeClass(t.status)">
+                      {{ t.status.replace('_', ' ') }}
+                    </span>
+                  </div>
+                  <h3 class="text-lg font-bold font-heading text-slate-900 dark:text-white mt-1">
                     {{ t.productName }}
                   </h3>
+                  <p class="text-xs text-slate-500 mt-1">
+                    <strong>{{ t.quantity }} units</strong> &bull; {{ t.organizationName }}
+                  </p>
                 </div>
-                <p class="text-xs text-slate-500 mt-1">
-                  Quantity: <strong>{{ t.quantity }} units</strong> &bull; Organization:
-                  <strong>{{ t.organizationName }}</strong>
-                </p>
               </div>
-              <span [class]="getStatusBadgeClass(t.status)">
-                {{ t.status.replace('_', ' ') }}
-              </span>
             </div>
+            
             <!-- Description / Remarks -->
             @if (t.description) {
-              <p class="text-xs text-slate-600 dark:text-slate-400">
-                {{ t.description }}
-              </p>
+              <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+                <p class="text-xs text-slate-600 dark:text-slate-400">
+                  {{ t.description }}
+                </p>
+              </div>
             }
+            
             <!-- MANUFACTURER ACTIONS -->
             @if (auth.userRole() === 'MANUFACTURER') {
               <div class="flex flex-wrap gap-2 pt-2">
                 @if (t.status === 'MANUFACTURER_ASSIGNED') {
                   <button
                     (click)="handleManufacturerAction(t, 'ACCEPT')"
-                    class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm"
+                    class="px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-bold text-xs rounded-xl shadow-md shadow-emerald-500/20 transition-all duration-200"
                   >
                     Accept Manufacturing Task
                   </button>
@@ -91,7 +149,7 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
                 @if (t.status === 'MANUFACTURER_ASSIGNED') {
                   <button
                     (click)="handleManufacturerAction(t, 'REJECT')"
-                    class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-sm"
+                    class="px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-xs rounded-xl shadow-md shadow-red-500/20 transition-all duration-200"
                   >
                     Reject Task
                   </button>
@@ -99,9 +157,9 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
                 @if (t.status === 'MANUFACTURING') {
                   <button
                     (click)="openCompleteMfgModal(t)"
-                    class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl shadow-md shadow-brand-500/20"
+                    class="px-4 py-2.5 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/30 transition-all duration-200"
                   >
-                    Mark Manufacturing Completed & Submit Notes
+                    Mark Manufacturing Completed
                   </button>
                 }
               </div>
@@ -112,7 +170,7 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
                 @if (t.status === 'QA_ASSIGNED') {
                   <button
                     (click)="handleQaAction(t, 'ACCEPT')"
-                    class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm"
+                    class="px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-bold text-xs rounded-xl shadow-md shadow-emerald-500/20 transition-all duration-200"
                   >
                     Accept Inspection Request
                   </button>
@@ -120,7 +178,7 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
                 @if (t.status === 'QA_ASSIGNED') {
                   <button
                     (click)="handleQaAction(t, 'REJECT')"
-                    class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-sm"
+                    class="px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-xs rounded-xl shadow-md shadow-red-500/20 transition-all duration-200"
                   >
                     Reject Request
                   </button>
@@ -128,9 +186,9 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
                 @if (t.status === 'QA_IN_PROGRESS') {
                   <button
                     (click)="openQaReportModal(t)"
-                    class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow-md shadow-purple-500/20"
+                    class="px-4 py-2.5 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold text-xs rounded-xl shadow-lg shadow-purple-500/30 transition-all duration-200"
                   >
-                    Perform Inspection & Submit Pass/Fail Report
+                    Submit Inspection Report
                   </button>
                 }
               </div>
@@ -141,7 +199,7 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
                 @if (t.status === 'PACKAGING_ASSIGNED') {
                   <button
                     (click)="handlePackagingAction(t, 'ACCEPT')"
-                    class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm"
+                    class="px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-bold text-xs rounded-xl shadow-md shadow-emerald-500/20 transition-all duration-200"
                   >
                     Accept Packaging Task
                   </button>
@@ -149,15 +207,15 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
                 @if (t.status === 'PACKAGING_IN_PROGRESS') {
                   <button
                     (click)="openShippingModal(t)"
-                    class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl shadow-md shadow-amber-500/20"
+                    class="px-4 py-2.5 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-bold text-xs rounded-xl shadow-lg shadow-amber-500/30 transition-all duration-200"
                   >
-                    Input Tracking & Vehicle Details & Dispatch
+                    Dispatch Shipment
                   </button>
                 }
                 @if (t.status === 'PACKAGING_COMPLETED') {
                   <button
                     (click)="handlePackagingAction(t, 'MARK_TRANSPORT_COMPLETE')"
-                    class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl shadow-md shadow-brand-500/20"
+                    class="px-4 py-2.5 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/30 transition-all duration-200"
                   >
                     Mark Transport Completed
                   </button>
@@ -170,17 +228,17 @@ import { Order, OrderStatus, Role } from '../../core/models/plts.models';
                 @if (t.status === 'RETAILER_ASSIGNED') {
                   <button
                     (click)="handleRetailerAction(t, 'CONFIRM_DELIVERY')"
-                    class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm"
+                    class="px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-bold text-xs rounded-xl shadow-md shadow-emerald-500/20 transition-all duration-200"
                   >
-                    Confirm Physical Delivery Received
+                    Confirm Delivery Received
                   </button>
                 }
                 @if (t.status === 'DELIVERED') {
                   <button
                     (click)="handleRetailerAction(t, 'MARK_AVAILABLE')"
-                    class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl shadow-md shadow-brand-500/20"
+                    class="px-4 py-2.5 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/30 transition-all duration-200"
                   >
-                    Mark Product Available & Close Lifecycle
+                    Mark Product Available
                   </button>
                 }
               </div>

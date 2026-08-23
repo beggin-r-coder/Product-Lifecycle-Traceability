@@ -7,10 +7,12 @@ import com.tcs.plts.dto.ApiResponse;
 import com.tcs.plts.dto.DefectCaseDto;
 import com.tcs.plts.entity.DefectCase;
 import com.tcs.plts.entity.Organization;
+import com.tcs.plts.entity.Order;
 import com.tcs.plts.service.BacktrackingEngineService;
 import com.tcs.plts.service.RootCauseAnalysisService;
 import com.tcs.plts.repository.DefectCaseRepository;
 import com.tcs.plts.repository.OrganizationRepository;
+import com.tcs.plts.repository.OrderRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,7 @@ public class DefectCaseController {
 
     private final DefectCaseRepository defectCaseRepository;
     private final OrganizationRepository organizationRepository;
+    private final OrderRepository orderRepository;
     private final BacktrackingEngineService backtrackingEngineService;
     private final RootCauseAnalysisService rootCauseAnalysisService;
     private final ObjectMapper objectMapper;
@@ -40,12 +43,22 @@ public class DefectCaseController {
         
         Organization organization = organizationRepository.findById(request.getOrganizationId())
                 .orElseThrow(() -> new RuntimeException("Organization not found"));
+
+        Order order = null;
+        if (request.getOrderId() != null) {
+            order = orderRepository.findById(request.getOrderId())
+                    .orElseThrow(() -> new IllegalArgumentException("Selected order not found"));
+            if (!order.getOrganization().getId().equals(organization.getId())) {
+                throw new IllegalArgumentException("Selected order does not belong to this organization");
+            }
+        }
         
         DefectCase defectCase = DefectCase.builder()
                 .defectCaseId(defectCaseId)
                 .productQrCode(request.getProductQrCode())
                 .productSerialNumber(request.getProductSerialNumber())
                 .batchNumber(request.getBatchNumber())
+                .order(order)
                 .defectCategory(request.getDefectCategory())
                 .severity(request.getSeverity())
                 .description(request.getDescription())

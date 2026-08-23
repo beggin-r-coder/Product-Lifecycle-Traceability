@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { ApiResponse, AuthResponse, Role, User } from '../models/plts.models';
+import { API_BASE_URL } from '../api.config';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8085/api/v1/auth';
+  private readonly apiUrl = `${API_BASE_URL}/auth`;
 
   currentUser = signal<User | null>(this.getUserFromStorage());
   token = signal<string | null>(localStorage.getItem('plts_token'));
@@ -16,20 +17,25 @@ export class AuthService {
   isAuthenticated = computed(() => !!this.token() && !!this.currentUser());
   userRole = computed(() => this.currentUser()?.role || null);
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   registerOrg(payload: any): Observable<ApiResponse<void>> {
     return this.http.post<ApiResponse<void>>(`${this.apiUrl}/register-org`, payload);
   }
 
   verifyOrgOtp(identifier: string, otp: string): Observable<ApiResponse<AuthResponse>> {
-    return this.http.post<ApiResponse<AuthResponse>>(`${this.apiUrl}/verify-org-otp`, { identifier, otp }).pipe(
-      tap(res => {
-        if (res.success && res.data) {
-          this.setSession(res.data);
-        }
-      })
-    );
+    return this.http
+      .post<ApiResponse<AuthResponse>>(`${this.apiUrl}/verify-org-otp`, { identifier, otp })
+      .pipe(
+        tap((res) => {
+          if (res.success && res.data) {
+            this.setSession(res.data);
+          }
+        }),
+      );
   }
 
   loginOrg(payload: any): Observable<ApiResponse<void>> {
@@ -37,27 +43,33 @@ export class AuthService {
   }
 
   verifyOrgLoginOtp(identifier: string, otp: string): Observable<ApiResponse<AuthResponse>> {
-    return this.http.post<ApiResponse<AuthResponse>>(`${this.apiUrl}/verify-org-login-otp`, { identifier, otp }).pipe(
-      tap(res => {
-        if (res.success && res.data) {
-          this.setSession(res.data);
-        }
-      })
-    );
+    return this.http
+      .post<ApiResponse<AuthResponse>>(`${this.apiUrl}/verify-org-login-otp`, { identifier, otp })
+      .pipe(
+        tap((res) => {
+          if (res.success && res.data) {
+            this.setSession(res.data);
+          }
+        }),
+      );
   }
 
   sendStakeholderOtp(generatedUserId: string): Observable<ApiResponse<void>> {
-    return this.http.post<ApiResponse<void>>(`${this.apiUrl}/send-stakeholder-otp`, { generatedUserId });
+    return this.http.post<ApiResponse<void>>(`${this.apiUrl}/send-stakeholder-otp`, {
+      generatedUserId,
+    });
   }
 
   verifyStakeholderOtp(identifier: string, otp: string): Observable<ApiResponse<AuthResponse>> {
-    return this.http.post<ApiResponse<AuthResponse>>(`${this.apiUrl}/verify-stakeholder-otp`, { identifier, otp }).pipe(
-      tap(res => {
-        if (res.success && res.data) {
-          this.setSession(res.data);
-        }
-      })
-    );
+    return this.http
+      .post<ApiResponse<AuthResponse>>(`${this.apiUrl}/verify-stakeholder-otp`, { identifier, otp })
+      .pipe(
+        tap((res) => {
+          if (res.success && res.data) {
+            this.setSession(res.data);
+          }
+        }),
+      );
   }
 
   logout(): void {
@@ -76,7 +88,7 @@ export class AuthService {
       role: authData.role,
       name: authData.name,
       companyName: authData.companyName,
-      organizationId: authData.organizationId
+      organizationId: authData.organizationId,
     };
 
     localStorage.setItem('plts_token', authData.token);

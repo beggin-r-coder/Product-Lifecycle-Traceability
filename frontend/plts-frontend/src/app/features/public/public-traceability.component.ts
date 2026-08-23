@@ -32,6 +32,35 @@ import { PublicTraceability } from '../../core/models/plts.models';
           </p>
         </div>
 
+        <!-- Search Form -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-lg border border-slate-200 dark:border-slate-800 p-6 sm:p-8">
+          <form (ngSubmit)="onSearch()" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                Enter Order ID or Product Serial Number
+              </label>
+              <input
+                type="text"
+                [(ngModel)]="searchQuery"
+                name="searchQuery"
+                placeholder="e.g., ORD-20260815-1234 or SN-ABC123"
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-bold focus:ring-2 focus:ring-brand-500/50 focus:outline-none transition-all"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              [disabled]="loading()"
+              class="w-full px-4 py-3 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700 disabled:from-slate-400 disabled:to-slate-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-brand-500/30 flex items-center justify-center space-x-2 transition-all duration-300"
+            >
+              @if (loading()) {
+                <span class="material-symbols-outlined animate-spin">refresh</span>
+              }
+              <span>{{ loading() ? 'Searching...' : 'Track Product' }}</span>
+            </button>
+          </form>
+        </div>
+
         <!-- Error Alert -->
         @if (errorMessage()) {
           <div
@@ -169,13 +198,22 @@ export class PublicTraceabilityComponent implements OnInit {
   loading = signal(false);
   data = signal<PublicTraceability | null>(null);
   errorMessage = signal<string | null>(null);
+  searchQuery = signal(''); // Search query for product tracking
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       if (params['orderId']) {
+        this.searchQuery.set(params['orderId']);
         this.loadTraceability(params['orderId']);
       }
     });
+  }
+
+  onSearch() {
+    const query = this.searchQuery().trim();
+    if (query) {
+      this.loadTraceability(query);
+    }
   }
 
   loadTraceability(orderId: string) {

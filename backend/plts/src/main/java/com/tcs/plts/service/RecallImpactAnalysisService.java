@@ -2,8 +2,11 @@ package com.tcs.plts.service;
 
 import com.tcs.plts.dto.RecallCaseDto;
 import com.tcs.plts.entity.ProductBatch;
+import com.tcs.plts.entity.RecallCase;
 import com.tcs.plts.repository.ProductBatchRepository;
 import com.tcs.plts.repository.RecallActionRepository;
+import com.tcs.plts.repository.RecallCaseRepository;
+import com.tcs.plts.common.enums.RecallStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,7 @@ public class RecallImpactAnalysisService {
 
     private final ProductBatchRepository productBatchRepository;
     private final RecallActionRepository recallActionRepository;
+    private final RecallCaseRepository recallCaseRepository;
 
     public RecallCaseDto.RecallImpactReport generateRecallImpactReport(String batchId, Long recallCaseId) {
         RecallCaseDto.RecallImpactReport report = RecallCaseDto.RecallImpactReport.builder()
@@ -84,18 +88,34 @@ public class RecallImpactAnalysisService {
     }
 
     public RecallCaseDto.RecallMetrics generateRecallMetrics(Long organizationId) {
-        RecallCaseDto.RecallMetrics metrics = RecallCaseDto.RecallMetrics.builder().build();
-
-        List<ProductBatch> allBatches = productBatchRepository.findByOrganizationId(organizationId);
-        
-        int totalProduced = allBatches.stream()
-                .filter(b -> "MANUFACTURING".equals(b.getBatchType()))
-                .mapToInt(ProductBatch::getQuantity)
+        List<RecallCase> recalls = recallCaseRepository.findByOrganizationIdOrderByCreatedAtDesc(organizationId);
+        long completed = recalls.stream().filter(recall -> recall.getStatus() == RecallStatus.COMPLETED).count();
+        long active = recalls.stream()
+                .filter(recall -> recall.getStatus() != RecallStatus.DRAFT && recall.getStatus() != RecallStatus.COMPLETED)
+                .count();
+        int productsInScope = recalls.stream()
+                .map(RecallCase::getAffectedProductCount)
+                .filter(java.util.Objects::nonNull)
+                .mapToInt(Integer::intValue)
                 .sum();
+        int productsRecovered = recalls.stream()
+                .mapToInt(recall -> {
+                    Integer returned = recallActionRepository.sumReturnedByRecallCaseId(recall.getId());
+                    Integer quarantined = recallActionRepository.sumQuarantinedByRecallCaseId(recall.getId());
+                    return Math.max(returned != null ? returned : 0, quarantined != null ? quarantined : 0);
+                })
+                .sum();
+        int pending = Math.max(0, productsInScope - productsRecovered);
+        double completion = productsInScope == 0 ? 0.0 : (productsRecovered * 100.0) / productsInScope;
 
-        metrics.setTotalProductsRecalled(totalProduced);
-
-        return metrics;
+        return RecallCaseDto.RecallMetrics.builder()
+                .totalRecalls((long) recalls.size())
+                .activeRecalls(active)
+                .completedRecalls(completed)
+                .totalProductsRecalled(productsInScope)
+                .productsPending(pending)
+                .completionPercentage(Math.round(completion * 100.0) / 100.0)
+                .build();
     }
 
     public int calculateEstimatedCost(int affectedProductCount, String recallScope) {

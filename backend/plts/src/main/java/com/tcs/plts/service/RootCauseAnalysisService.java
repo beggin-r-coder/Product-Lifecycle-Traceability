@@ -23,6 +23,10 @@ public class RootCauseAnalysisService {
 
     public RootCauseAnalysisResult analyzeRootCause(String batchId, Long orderId) {
         RootCauseAnalysisResult result = new RootCauseAnalysisResult();
+
+        if (orderId == null) {
+            return result;
+        }
         
         List<ProductBatch> batches = productBatchRepository.findByOrderIdOrderByTimestampAsc(orderId);
         Map<String, Integer> factorCounts = new HashMap<>();

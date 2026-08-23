@@ -26,6 +26,10 @@ public class BacktrackingEngineService {
     public List<DefectCaseDto.BacktrackingTimeline> backtrackProductHistory(String productSerialNumber, Long orderId) {
         List<DefectCaseDto.BacktrackingTimeline> timeline = new ArrayList<>();
 
+        if (orderId == null) {
+            return timeline;
+        }
+
         Order order = orderRepository.findById(orderId).orElse(null);
         if (order == null) {
             return timeline;

@@ -60,6 +60,37 @@ import { AuthService } from '../../../core/services/auth.service';
               </li>
               <li>
                 <a
+                  routerLink="/org/defects"
+                  routerLinkActive="active bg-primary/10 text-primary"
+                  class="rounded-lg px-3 py-2.5 text-sm"
+                >
+                  <span class="material-symbols-outlined text-lg">report_problem</span>
+                  <span>Defect Management</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  routerLink="/org/investigation"
+                  routerLinkActive="active bg-primary/10 text-primary"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  class="rounded-lg px-3 py-2.5 text-sm"
+                >
+                  <span class="material-symbols-outlined text-lg">manage_search</span>
+                  <span>Investigations</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  routerLink="/org/recalls"
+                  routerLinkActive="active bg-primary/10 text-primary"
+                  class="rounded-lg px-3 py-2.5 text-sm"
+                >
+                  <span class="material-symbols-outlined text-lg">crisis_alert</span>
+                  <span>Recall Management</span>
+                </a>
+              </li>
+              <li>
+                <a
                   routerLink="/org/notifications"
                   routerLinkActive="active bg-primary/10 text-primary"
                   class="rounded-lg px-3 py-2.5 text-sm"

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResponse, DashboardAnalytics } from '../models/plts.models';
+import { API_BASE_URL } from '../api.config';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AnalyticsService {
-  private apiUrl = 'http://localhost:8085/api/v1/analytics';
+  private readonly apiUrl = `${API_BASE_URL}/analytics`;
 
   constructor(private http: HttpClient) {}
 
@@ -17,5 +18,13 @@ export class AnalyticsService {
       url += `?userId=${userId}`;
     }
     return this.http.get<ApiResponse<DashboardAnalytics>>(url);
+  }
+
+  getPublicStats(): Observable<
+    ApiResponse<{ totalOrganizations: string; totalProducts: string; uptime: string }>
+  > {
+    return this.http.get<
+      ApiResponse<{ totalOrganizations: string; totalProducts: string; uptime: string }>
+    >(`${this.apiUrl}/public/stats`);
   }
 }

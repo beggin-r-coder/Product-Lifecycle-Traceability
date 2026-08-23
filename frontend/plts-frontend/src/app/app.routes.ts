@@ -19,19 +19,20 @@ export const routes: Routes = [
   { path: 'traceability', component: PublicTraceabilityComponent },
   { path: 'login', component: AuthLoginComponent },
   { path: 'signup', component: AuthSignupComponent },
-  
+
   // Organization Portal Routes
   { path: 'org/dashboard', component: OrgDashboardComponent },
   { path: 'org/stakeholders', component: OrgStakeholdersComponent },
   { path: 'org/orders', component: OrgOrdersComponent },
   { path: 'org/defects', component: OrgDefectsComponent },
   { path: 'org/investigation', component: OrgInvestigationComponent },
-  { path: 'org/investigation/:id/backtracking', component: OrgBacktrackingComponent },
+  { path: 'org/investigation/:defectCaseId', component: OrgInvestigationComponent },
+  { path: 'org/investigation/:defectCaseId/backtracking', component: OrgBacktrackingComponent },
   { path: 'org/recalls', component: OrgRecallsComponent },
   { path: 'org/notifications', component: OrgNotificationsComponent },
 
   // Stakeholder Portal Routes
   { path: 'stakeholder/dashboard', component: StakeholderDashboardComponent },
 
-  { path: '**', redirectTo: 'traceability' }
+  { path: '**', redirectTo: 'traceability' },
 ];

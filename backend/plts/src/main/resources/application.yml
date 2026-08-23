@@ -31,8 +31,8 @@ spring:
     host: ${SPRING_MAIL_HOST:smtp.gmail.com}
     # Gmail SSL SMTP. Override with 587 and enable STARTTLS when your network permits it.
     port: ${SPRING_MAIL_PORT:465}
-    username: ${SPRING_MAIL_USERNAME:dasanishka157@gmail.com}
-    password: ${SPRING_MAIL_PASSWORD:yjahccijtlqnevcp}
+    username: ${SPRING_MAIL_USERNAME:productlifecycle4@gmail.com}
+    password: ${SPRING_MAIL_PASSWORD:efkpyltfpyqdzevh}
     properties:
       mail:
         smtp:
@@ -48,7 +48,7 @@ spring:
 
 app:
   mail:
-    from: ${MAIL_FROM:${SPRING_MAIL_USERNAME:dasanishka157@gmail.com}}
+    from: ${MAIL_FROM:${SPRING_MAIL_USERNAME:productlifecycle4@gmail.com}}
   jwt:
     secret: PLTS_ENTERPRISE_SUPER_SECURE_JWT_SECRET_KEY_FOR_PRODUCT_LIFECYCLE_TRACEABILITY_SYSTEM_2026
     expiration-ms: 86400000
